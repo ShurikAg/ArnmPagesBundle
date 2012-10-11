@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>pages.page.create</source>
+                <target>Create New Page</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>page.form.title.label</source>
+                <target>Page Title</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>page.form.title.help</source>
+                <target>HTML title tag for the page</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>page.form.slug.label</source>
+                <target>Slug</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>page.form.slug.help</source>
+                <target>Part of the URL to the page that allows browsering to the page. Optional - if not provided, the slug wil be generated based on the title.</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>page.form.description.label</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>page.form.description.help</source>
+                <target>Description META tag value</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>page.form.keywords.label</source>
+                <target>Keywords</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>page.form.keywords.help</source>
+                <target>Keywords META tag value</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>page.form.layout.label</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>page.form.layout.help</source>
+                <target>Layout that this page is going to be wrapped with.</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>pages.tree.action.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>pages.tree.action.new_subpage</source>
+                <target>Add Sub-page</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>pages.tree.action.delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>page.form.title.create</source>
+                <target>Create New Page</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>page.form.title.update</source>
+                <target>Update Page</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>page.form.action.update</source>
+                <target>Update Page</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>page.form.action.create</source>
+                <target>Create Page</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>page.form.action.reset</source>
+                <target>Reset</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>page.form.create.success</source>
+                <target>Page has been created successfully</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>page.form.update.success</source>
+                <target>Page has been updated successfully</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>page.form.error.parent_page_not_found</source>
+                <target>Requested parent page was not found!</target>
+            </trans-unit>
+            
+            <trans-unit id="23">
+                <source>layout.list.title</source>
+                <target>Layouts List</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>layout.list.table.head.layout</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>layout.list.table.head.actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>layout.list.action.create_new</source>
+                <target>Create New Layout</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>layout.form.title.create</source>
+                <target>Create New Layout</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>layout.form.action.create</source>
+                <target>Create New Layout</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>layout.form.action.reset</source>
+                <target>Reset</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>layout.form.action.back_to_list</source>
+                <target>Back to List</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>layout.form.layout.label</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>layout.form.layout.help</source>
+                <target>Fully qualified name of the layout</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>layout.form.title.show</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>layout.form.title.edit</source>
+                <target>Edit Layout</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>layout.form.action.update</source>
+                <target>Update Layout</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>page.form.status.label</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>page.form.status.help</source>
+                <target>Status of the page (published or not)</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>pages.tree.action.show</source>
+                <target>Show</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>page.elements.head</source>
+                <target>Head</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>page.elements.layout</source>
+                <target>Layout</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>page.show.info</source>
+                <target><![CDATA[<p>This screen allows to edit any details of this page.</p> <p>Select one of the page areas bellow to see and edit the details.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>page.new.info</source>
+                <target><![CDATA[<p>Any page creation starts with page title...</p>]]></target>
+            </trans-unit>
+            <trans-unit id="43">
+                <source>page.form.description.label</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>page.tree.info</source>
+                <target><![CDATA[<p>This page presents the entire pages structure of the site.</p><p>To reorder pages and restructure the site hierarchy drag the elements within the tree.</p><p>Hover over the elements to see available actions.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>page.tree.note</source>
+                <target><![CDATA[<p>This representation does NOT include pages from custom modules!</p>]]></target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>layout.list.info</source>
+                <target><![CDATA[<p>List of available layouts are presented on the right hand side.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="47">
+                <source>page.elements.template</source>
+                <target>Template</target>
+            </trans-unit>
+            <trans-unit id="48">
+                <source>page.form.template.label</source>
+                <target>Template</target>
+            </trans-unit>
+            <trans-unit id="49">
+                <source>template.list.title</source>
+                <target>Templates List</target>
+            </trans-unit>
+            <trans-unit id="50">
+                <source>template.list.action.create_new</source>
+                <target>Create New Template</target>
+            </trans-unit>
+            <trans-unit id="51">
+                <source>template.list.info</source>
+                <target><![CDATA[<p>List of available templates are presented on the right hand side.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="52">
+                <source>template.list.table.head.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="53">
+                <source>template.form.name.label</source>
+                <target>Template Name</target>
+            </trans-unit>
+            <trans-unit id="54">
+                <source>template.form.name.help</source>
+                <target>Fully qualified template name</target>
+            </trans-unit>
+            <trans-unit id="55">
+                <source>template.form.action.create</source>
+                <target>Create New Template</target>
+            </trans-unit>
+            <trans-unit id="56">
+                <source>template.form.title.create</source>
+                <target>Create New Template</target>
+            </trans-unit>
+            <trans-unit id="57">
+                <source>template.form.title.show</source>
+                <target>Template</target>
+            </trans-unit>
+            <trans-unit id="58">
+                <source>template.form.title.edit</source>
+                <target>Edit Template</target>
+            </trans-unit>
+            <trans-unit id="59">
+                <source>template.form.action.update</source>
+                <target>Update Template</target>
+            </trans-unit>
+            <trans-unit id="60">
+                <source>page.form.template.help</source>
+                <target>Template that this page is going to use.</target>
+            </trans-unit>
+            <trans-unit id="61">
+                <source>page.status.heading</source>
+                <target>Page status</target>
+            </trans-unit>
+            <trans-unit id="62">
+                <source>page.status.draft.info</source>
+                <target>This page is not published.</target>
+            </trans-unit>
+            <trans-unit id="63">
+                <source>page.status.action.publish</source>
+                <target>Publish</target>
+            </trans-unit>
+            <trans-unit id="64">
+                <source>page.status.published.info</source>
+                <target>This page is published.</target>
+            </trans-unit>
+            <trans-unit id="65">
+                <source>page.status.action.unpublish</source>
+                <target>Unpublish</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

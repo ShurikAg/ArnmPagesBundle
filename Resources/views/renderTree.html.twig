@@ -1,0 +1,13 @@
+{% set type = type|default('homepage') %}
+<ul>
+  {% for node in tree %}
+    <li id="{{ node.id }}">
+      <a href="#" rel="{{ type }}">
+        {{ node.title }}
+      </a>
+      {% if node.__children|length > 0 %}
+      	{% include 'ArnmPagesBundle::renderTree.html.twig' with {'tree': node.__children, 'type': 'page'} %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

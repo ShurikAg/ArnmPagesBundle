@@ -1,0 +1,5 @@
+<label>{{ 'page.form.layout.label'|trans }}</label>
+<div class="controls">
+	<span  class="span5">{% if obj.layout %}{{ obj.layout.layout }}{% endif %}</span>
+	<a class="btn btn-small dinamic" data-toggle="ajax-control" rel="page-layout" href="{{ path('Araneum_pages_ajax_layout_edit', {'id': obj.id}) }}">{{ 'default.label.change'|trans }}</a>
+</div>

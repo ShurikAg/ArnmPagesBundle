@@ -1,0 +1,12 @@
+<div class="page-header">
+	<h2>{{ 'page.elements.head'|trans }}</h2>
+</div>
+<div class="details-row" id="page-title">
+	{% include 'ArnmPagesBundle:Pages/Ajax:title.show.html.twig' with {'obj':obj} %}
+</div>
+<div class="details-row" id="page-description">
+	{% include 'ArnmPagesBundle:Pages/Ajax:description.show.html.twig' with {'obj':obj} %}
+</div>
+<div class="details-row" id="page-keywords">
+	{% include 'ArnmPagesBundle:Pages/Ajax:keywords.show.html.twig' with {'obj':obj} %}
+</div>

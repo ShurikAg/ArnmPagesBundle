@@ -1,0 +1,61 @@
+<style>
+	.column { float: left; padding-bottom: 5px; }
+	.portlet { margin: 0 1em 1em 0; }
+	.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; }
+	.portlet-header .ui-icon { float: right; }
+	.portlet-content { padding: 0.4em; }
+	.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+	.ui-sortable-placeholder * { visibility: hidden; }
+</style>
+<div id="template" class="span8 template-container">
+	{% include template with {'page': page} %}
+</div>
+<div id="template-widgets" class="span3 widgets-container">
+	{% if widgets|length > 0 %}
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<span class="accordion-toggle">
+					<h5>Widgets</h5>
+				</span>
+			</div>
+			<div class="accordion-body widget-list">
+				{% for key,widget in widgets %}
+				    {% render "ArnmPagesBundle:TemplateOrganizer:widget" with { 'widget' : widget, 'status' : 'new' } %}
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+</div>
+
+<div class="modal hide" id="widget-edit-dialog">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">×</button>
+		<h3>Loading...</h3>
+	</div>
+	<form action="" method="POST" >
+		<div class="modal-body">
+			<p></p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Cancel</button>
+			<button class="btn btn-primary" type="submit">Save</button>
+		</div>
+	</form>
+</div>
+
+<script>
+var sortWidgetUrl = "{{ path('Araneum_pages_ajax_template_organizer_sort_widget', {'id': page.id} ) }}";
+$(document).ready(
+		function() {
+			$( ".widget-list .widget" ).draggable({
+				connectToSortable: ".column",
+				helper: "clone",
+				revert: "invalid"
+			});
+			$( ".column" ).sortable({
+				connectWith: ".column",
+			});
+	
+			$( ".column, .widget-list" ).disableSelection();		
+		});
+</script>

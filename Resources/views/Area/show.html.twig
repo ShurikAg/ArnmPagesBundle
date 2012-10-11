@@ -1,0 +1,39 @@
+{% extends 'ArnmAraneumBundle::araneum.html.twig' %}
+
+{% block title %}
+	{{ parent() }} | {{ 'area.form.title.show'|trans({}, 'area') }}
+{% endblock %}
+
+
+{% block content %}
+	<div class="page-header">
+		<h2>{{ 'area.form.title.show'|trans({}, 'area') }}</h2>
+	</div>
+
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>{{ 'default.label.id'|trans }}</th>
+	            <td>{{ entity.id }}</td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <th>{{ 'area.label.code'|trans({}, 'area') }}</th>
+	            <td>{{ entity.code }}</td>
+	        </tr>
+	    </tbody>
+	</table>
+	
+	<div class="well">
+	    <a href="{{ path('Araneum_area', {'templateId': template.id}) }}" class="btn">
+	        {{ 'default.form.action.back_to_list'|trans }}
+	    </a>
+	    <a href="{{ path('Araneum_area_edit', { 'templateId': template.id, 'id': entity.id }) }}" class="btn btn-primary">
+	        {{ 'default.form.action.edit'|trans }}
+	    </a>
+	    <a href="{{ path('Araneum_area_delete', { 'templateId': template.id, 'id': entity.id }) }}" class="btn btn-danger">
+	        {{ 'default.form.action.delete'|trans }}
+	    </a>
+	</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<label>{{ 'page.form.description.label'|trans }}</label>
+<div class="controls">
+	<span class="span4">{{ obj.description }}</span>
+	<a class="btn btn-small dinamic" data-toggle="ajax-control" rel="page-description" href="{{ path('Araneum_pages_ajax_description_edit', {'id': obj.id}) }}">{{ 'default.label.edit'|trans }}</a>
+</div>

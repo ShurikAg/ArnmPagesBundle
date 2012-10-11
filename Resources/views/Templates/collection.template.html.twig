@@ -1,0 +1,16 @@
+{% extends layout %}
+
+{% block title %}
+	{{ page.title }}
+{% endblock %}
+
+
+{% block content %}
+	<div class="row content-wrapper">
+		<div class="row">
+			<div class="collections">{% render "ArnmPagesBundle:Page:widgetList" with {'page': page, 'areaCode': 'collections'} %}</div>
+			<div class="collection-content">{% render "ArnmPagesBundle:Page:widgetList" with {'page': page, 'areaCode': 'collection-content'} %}</div>
+		</div>
+		<div class="collection-list">{% render "ArnmPagesBundle:Page:widgetList" with {'page': page, 'areaCode': 'collection-list'} %}</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% if published %}
+	<div class="alert alert-success hint">
+		<span class="label label-success">{{ 'page.status.heading'|trans }}</span>
+		<p>{{ 'page.status.published.info'|trans }}</p>
+		<p class="align-right"><button class="btn" data-toggle="ajax-control" href="{{ path('ArnmPagesBundle_page_unpublish', {'id': page.id} ) }}" rel="page-status">{{ 'page.status.action.unpublish'|trans }}</button></p>
+	</div>
+{% else %}
+	<div class="alert alert-block hint">
+		<span class="label label-warning">{{ 'page.status.heading'|trans }}</span>
+		<p>{{ 'page.status.draft.info'|trans }}</p>
+		<p class="align-right"><button class="btn btn-primary" data-toggle="ajax-control" href="{{ path('ArnmPagesBundle_page_publish', {'id': page.id} ) }}" rel="page-status">{{ 'page.status.action.publish'|trans }}</button></p>
+	</div>
+{% endif %}

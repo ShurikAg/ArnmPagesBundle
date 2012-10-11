@@ -1,0 +1,7 @@
+<div class="row show-grid">
+	<div class="row show-grid">
+		<div class="column span5 area" id="collections">{% render "ArnmPagesBundle:TemplateOrganizer:widgetList" with {'page': page, 'areaCode': 'collections'} %}</div>
+		<div class="column span7 area pull-right" id="collection-content">{% render "ArnmPagesBundle:TemplateOrganizer:widgetList" with {'page': page, 'areaCode': 'collection-content'} %}</div>
+	</div>
+	<div class="column span12 area" id="collection-list">{% render "ArnmPagesBundle:TemplateOrganizer:widgetList" with {'page': page, 'areaCode': 'collection-list'} %}</div>
+</div>

@@ -1,0 +1,48 @@
+{% extends 'ArnmAraneumBundle::araneum.html.twig' %}
+
+
+{% block title %}
+	{{ parent() }} | {{ 'area.list.title'|trans({'%name%': template.name}, 'area') }}
+{% endblock %}
+
+{% block sidebar %}
+	<div class="alert alert-info hint">
+		<span class="label label-info">{{ 'default.label.info'|trans }}</span>
+  		{{ 'area.list.info'|trans({}, 'area' )|raw }}
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="page-header">
+		<h2>{{ 'area.list.title'|trans({'%name%': template.name}, 'area') }}</h2>
+	</div>
+	
+	<table class="table table-striped table-bordered table-condensed">
+	    <thead>
+	        <tr>
+	            <th>#</th>
+	            <th>{{ 'area.list.table.head.code'|trans({}, 'area') }}</th>
+	            <th>{{ 'default.label.actions'|trans }}</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    {% for entity in entities %}
+	        <tr>
+	            <td><a href="{{ path('Araneum_area_show', { 'templateId': template.id, 'id': entity.id }) }}">{{ entity.id }}</a></td>
+	            <td>{{ entity.code }}</td>
+	            <td>
+                    <a href="{{ path('Araneum_area_show', { 'templateId': template.id, 'id': entity.id }) }}" class="btn">show</a>
+                    <a href="{{ path('Araneum_area_edit', { 'templateId': template.id, 'id': entity.id }) }}" class="btn">edit</a>
+                    <a href="{{ path('Araneum_area_delete', { 'templateId': template.id, 'id': entity.id }) }}" class="btn btn-danger">delete</a>
+	            </td>
+	        </tr>
+	    {% endfor %}
+	    </tbody>
+	</table>
+	
+	<div class="well">
+	    <a href="{{ path('Araneum_area_new', {'templateId': template.id} ) }}" class="btn btn-primary">
+	        {{ 'area.list.action.define_new'|trans({}, 'area')  }}
+	    </a>
+    </div>
+{% endblock %}

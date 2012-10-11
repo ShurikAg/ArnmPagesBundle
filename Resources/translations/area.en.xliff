@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>area.list.title</source>
+                <target>Areas List for '%name%'</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>area.list.table.head.code</source>
+                <target>Area Code</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>area.list.info</source>
+                <target><![CDATA[<p>List of available areas defined in requested template are presented on the right hand side.</p>]]></target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>area.list.action.define_new</source>
+                <target>Define New Area</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>area.form.title.define_new</source>
+                <target>Define New Area for %template_name%</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>area.form.code.label</source>
+                <target>Area Code</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>area.form.code.help</source>
+                <target>UNIQUE code for the area in the template</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>area.form.action.define_new</source>
+                <target>Define New Area</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>area.form.title.edit</source>
+                <target>Edit Area</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>area.form.action.update</source>
+                <target>Update Area</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>area.label.code</source>
+                <target>Area Code</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>area.form.title.show</source>
+                <target>Area</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

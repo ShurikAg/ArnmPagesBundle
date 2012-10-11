@@ -1,0 +1,14 @@
+<div class="widget {% if status is defined %}{{status}}{% endif %}" data-widget-id="{{ widget.id }}" data-widget-title="{{ widget.title }}"data-widget-bundle="{{ widget.bundle }}" data-widget-controller="{{ widget.controller }}">
+    <div class="widget-title">
+    	{{ widget.title }}
+    </div>
+    <div class="widget-body">
+    	{% if widget.id %}
+	    	<button class="btn btn-mini edit" href="{{ path( editRoute , {'id': widget.id} ) }}">{{ 'default.label.edit'|trans }}</button>
+	    	<button class="btn btn-mini btn-danger delete" href="{{ path( deleteRoute , {'id': widget.id} ) }}">{{ 'default.label.delete'|trans }}</button>
+    	{% else %}
+    		<button class="btn btn-mini edit" href="">{{ 'default.label.edit'|trans }}</button>
+	    	<button class="btn btn-mini btn-danger delete" href="">{{ 'default.label.delete'|trans }}</button>
+    	{% endif %}
+    </div>
+</div> 

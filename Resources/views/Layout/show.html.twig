@@ -1,0 +1,39 @@
+{% extends 'ArnmAraneumBundle::araneum.html.twig' %}
+
+{% block title %}
+	{{ parent() }} | {{ 'layout.form.title.show'|trans }}
+{% endblock %}
+
+
+{% block content %}
+	<div class="page-header">
+		<h2>{{ 'layout.form.title.show'|trans }}</h2>
+	</div>
+
+	<table class="table">
+	    <thead>
+	        <tr>
+	            <th>Id</th>
+	            <td>{{ entity.id }}</td>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr>
+	            <th>Layout</th>
+	            <td>{{ entity.layout }}</td>
+	        </tr>
+	    </tbody>
+	</table>
+	
+	<div class="well">
+	    <a href="{{ path('Araneum_layout') }}" class="btn">
+	        Back to the list
+	    </a>
+	    <a href="{{ path('Araneum_layout_edit', { 'id': entity.id }) }}" class="btn btn-primary">
+	        Edit
+	    </a>
+	    <a href="{{ path('Araneum_layout_delete', { 'id': entity.id }) }}" class="btn btn-danger">
+	        Delete
+	    </a>
+	</div>
+{% endblock %}

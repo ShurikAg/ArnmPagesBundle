@@ -1,0 +1,30 @@
+{% extends 'ArnmAraneumBundle::araneum.html.twig' %}
+
+{% block title %}
+	{{ parent() }} | {{ 'page.form.title.update'|trans }}
+{% endblock %}
+
+{% block sidebar %}
+	<div class="alert alert-info hint">
+		<span class="label label-info">{{ 'default.label.info'|trans }}</span>
+  		{{ 'page.show.info'|trans|raw }}
+	</div>
+	<ul class="nav nav-tabs nav-stacked page-components-nav ajax-menu">
+		<li>
+			<a data-toggle="ajax-control" href="{{ path('Araneum_pages_ajax_header', {'id': page.id} ) }}" rel="page-admin-content">{{ 'page.elements.head'|trans }}</a>
+		</li>
+		<li>
+			<a data-toggle="ajax-control" href="{{ path('Araneum_pages_ajax_layout', {'id': page.id} ) }}" rel="page-admin-content">
+				{{ 'page.elements.layout'|trans }}
+				<button class="btn template-button" data-toggle="ajax-control-template" href="{{ path('Araneum_pages_ajax_template', {'id': page.id} ) }}" rel="page-admin-content">{{ 'page.elements.template'|trans }}</button>
+			</a>
+		</li>
+	</ul>
+	<div id="page-status">
+		{% render "ArnmPagesBundle:Pages:statusControl" with {'page': page} %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div id="page-admin-content"></div>
+{% endblock %}
