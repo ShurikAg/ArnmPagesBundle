@@ -26,7 +26,7 @@ class TemplateOrganizerController extends ArnmAjaxController
         $tmplObj = $page->getTemplate();
         $pageTemplate = ($tmplObj instanceof Template) ? $tmplObj->getName() : null;
         
-        if(empty($pageTemplate)) {
+        if (empty($pageTemplate)) {
             return '';
         }
         
@@ -74,7 +74,7 @@ class TemplateOrganizerController extends ArnmAjaxController
      */
     public function widgetAction($widget, $status = null)
     {
-        if($widget instanceof Widget) {
+        if ($widget instanceof Widget) {
             $routePrefix = 'widget_' . $widget->getBundle() . '_' . $widget->getController();
         } else {
             $routePrefix = 'widget_' . $widget['bundle'] . '_' . $widget['controller'];
@@ -84,10 +84,10 @@ class TemplateOrganizerController extends ArnmAjaxController
         $deleteRoute = $routePrefix . '_delete';
         $params = array(
             'widget' => $widget, 
-            'editRoute' => $editRoute,
+            'editRoute' => $editRoute, 
             'deleteRoute' => $deleteRoute
         );
-        if(! empty($status)) {
+        if (! empty($status)) {
             $params['status'] = $status;
         }
         
@@ -107,7 +107,7 @@ class TemplateOrganizerController extends ArnmAjaxController
         try {
             //get the page
             $page = $this->get('arnm_pages.manager')->getPageById($id);
-            if(! ($page instanceof Page)) {
+            if (! ($page instanceof Page)) {
                 throw new \InvalidArgumentException("Page entity with ID '" . (string) $id . "' was not found!");
             }
             
@@ -116,7 +116,7 @@ class TemplateOrganizerController extends ArnmAjaxController
             
             $newWidget = null;
             //if it's a new widget for this page
-            if(empty($params['widgetId'])) {
+            if (empty($params['widgetId'])) {
                 //add it
                 //return the ID of new widget
                 $newWidget = $this->get('arnm_widget.manager')->addNewWidgetToPage($page, $params['title'], $params['bundle'], 
@@ -126,13 +126,13 @@ class TemplateOrganizerController extends ArnmAjaxController
                 $editRoute = $routePrefix . '_edit';
                 $deleteRoute = $routePrefix . '_delete';
                 $reply['widget']['edit_action'] = $this->get('router')->generate($editRoute, 
-                    array(
-                        'id' => $newWidget->getId()
-                    ));
+                array(
+                    'id' => $newWidget->getId()
+                ));
                 $reply['widget']['delete_action'] = $this->get('router')->generate($deleteRoute, 
-                    array(
-                        'id' => $newWidget->getId()
-                    ));
+                array(
+                    'id' => $newWidget->getId()
+                ));
             } else {
                 //else validate that this widget exists for the page and sort it into different place
                 $widget = $this->get('arnm_widget.manager')->moveWidget($page, $params['widgetId'], $params['area'], $params['index']);
