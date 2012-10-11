@@ -23,7 +23,7 @@ class PageController extends ArnmController
         $pagesMgr = $this->getPagesManager();
         $page = $pagesMgr->findPageBySlugs($slug, $path_slug);
 
-        if(! ($page instanceof Page) || $page->getStatus() !== Page::STATUS_PUBLISHED) {
+        if (! ($page instanceof Page) || $page->getStatus() !== Page::STATUS_PUBLISHED) {
             throw $this->createNotFoundException("Page not found");
         }
 

@@ -15,185 +15,186 @@ use Arnm\PagesBundle\Manager\PagesManager;
  */
 class PagesController extends ArnmController
 {
-  /**
-   * Renders pages tree hyrarchy
-   *
-   * return string Rendered page HTML
-   */
-  public function treeAction()
-  {
-    $pagesTree = $this->getPagesManager()->fetchPagesTree();
 
-    return $this->render('ArnmPagesBundle:Pages:tree.html.twig', array(
-        'tree' => $pagesTree
-    ));
-  }
+    /**
+     * Renders pages tree hyrarchy
+     *
+     * return string Rendered page HTML
+     */
+    public function treeAction()
+    {
+        $pagesTree = $this->getPagesManager()->fetchPagesTree();
 
-  /**
-   * Renders and handles new page form
-   *
-   * @param Request $request
-   */
-  public function newAction(Request $request)
-  {
-    $page = new Page();
-
-    //check if we've got the parent page
-    $parentPage = null;
-
-    if($request->query->has('parent_id')) {
-      //try to find the parent page
-      $parentPage = $this->getPagesManager()->getPageById($request->query->get('parent_id'));
-      if(! $parentPage) {
-        $this->getSession()->setFlash('error', 'page.form.error.parent_page_not_found');
-
-        return $this->redirect($this->generateUrl('ArnmPagesBundle_pages'));
-      }
-
-      $page->setParentId($parentPage->getId());
+        return $this->render('ArnmPagesBundle:Pages:tree.html.twig', array(
+            'tree' => $pagesTree
+        ));
     }
 
-    $pageForm = $this->createForm(new NewPageType(), $page);
+    /**
+     * Renders and handles new page form
+     *
+     * @param Request $request
+     */
+    public function newAction(Request $request)
+    {
+        $page = new Page();
 
-    if($request->getMethod() == 'POST') {
-      $pageForm->bindRequest($request);
+        //check if we've got the parent page
+        $parentPage = null;
 
-      if($pageForm->isValid()) {
-        //handle populated page object
-        $this->getPagesManager()->createNewPage($page);
+        if ($request->query->has('parent_id')) {
+            //try to find the parent page
+            $parentPage = $this->getPagesManager()->getPageById($request->query->get('parent_id'));
+            if (! $parentPage) {
+                $this->getSession()->setFlash('error', 'page.form.error.parent_page_not_found');
 
-        $this->getSession()->setFlash('notice', 'page.form.create.success');
+                return $this->redirect($this->generateUrl('ArnmPagesBundle_pages'));
+            }
 
-        return $this->redirect($this->generateUrl('ArnmPagesBundle_page_show', array(
-            'id' => $page->getId()
-        )));
-      }
-    }
-    return $this->render('ArnmPagesBundle:Pages:newPage.html.twig', array(
-        'form' => $pageForm->createView()
-    ));
-  }
+            $page->setParentId($parentPage->getId());
+        }
 
-  /**
-   * Renders page details page.
-   * This page enables to update any details of the page
-   *
-   * @param int $id
-   */
-  public function showAction($id)
-  {
-    $page = $this->getPagesManager()->getPageById($id);
+        $pageForm = $this->createForm(new NewPageType(), $page);
 
-    if(! $page) {
-      throw $this->createNotFoundException('No page found for id ' . $id);
-    }
+        if ($request->getMethod() == 'POST') {
+            $pageForm->bindRequest($request);
 
-    return $this->render('ArnmPagesBundle:Pages:showPage.html.twig', array(
-        'page' => $page
-    ));
-  }
+            if ($pageForm->isValid()) {
+                //handle populated page object
+                $this->getPagesManager()->createNewPage($page);
 
-  /**
-   * Handles ajax request for sorting of a tree nodes
-   *
-   * @param Request $request
-   *
-   * @return Response
-   */
-  public function sortAction(Request $request)
-  {
-    if(! $request->isXmlHttpRequest() || $request->getMethod() != 'POST') {
-      throw $this->createNotFoundException('Page does not exists');
+                $this->getSession()->setFlash('notice', 'page.form.create.success');
+
+                return $this->redirect($this->generateUrl('ArnmPagesBundle_page_show', array(
+                    'id' => $page->getId()
+                )));
+            }
+        }
+        return $this->render('ArnmPagesBundle:Pages:newPage.html.twig', array(
+            'form' => $pageForm->createView()
+        ));
     }
 
-    $nodeId = $request->request->get('node');
-    $parentId = $request->request->get('parent');
-    $index = $request->request->get('index');
+    /**
+     * Renders page details page.
+     * This page enables to update any details of the page
+     *
+     * @param int $id
+     */
+    public function showAction($id)
+    {
+        $page = $this->getPagesManager()->getPageById($id);
 
-    $reply = array();
-    try {
-      if($this->getPagesManager()->sort($nodeId, $parentId, $index) === true) {
-        $reply['status'] = 'SUCCESS';
-      }
+        if (! $page) {
+            throw $this->createNotFoundException('No page found for id ' . $id);
+        }
 
-    } catch(\InvalidArgumentException $e) {
-      $reply['status'] = 'FAIL';
-      $reply['error'] = $e->getMessage();
+        return $this->render('ArnmPagesBundle:Pages:showPage.html.twig', array(
+            'page' => $page
+        ));
     }
 
-    $response = new Response(json_encode($reply));
-    $response->headers->set('Content-Type', 'application/json');
+    /**
+     * Handles ajax request for sorting of a tree nodes
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function sortAction(Request $request)
+    {
+        if (! $request->isXmlHttpRequest() || $request->getMethod() != 'POST') {
+            throw $this->createNotFoundException('Page does not exists');
+        }
 
-    return $response;
-  }
+        $nodeId = $request->request->get('node');
+        $parentId = $request->request->get('parent');
+        $index = $request->request->get('index');
 
-  /**
-   * Updates status of athe page
-   *
-   * @param int $id
-   * @param string $action
-   */
-  public function updateStatusAction($id, $action)
-  {
-    $request = $this->getRequest();
-    if(! $request->isXmlHttpRequest()) {
-      throw $this->createNotFoundException();
+        $reply = array();
+        try {
+            if ($this->getPagesManager()->sort($nodeId, $parentId, $index) === true) {
+                $reply['status'] = 'SUCCESS';
+            }
+
+        } catch (\InvalidArgumentException $e) {
+            $reply['status'] = 'FAIL';
+            $reply['error'] = $e->getMessage();
+        }
+
+        $response = new Response(json_encode($reply));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
-    $reply = array();
+    /**
+     * Updates status of athe page
+     *
+     * @param int $id
+     * @param string $action
+     */
+    public function updateStatusAction($id, $action)
+    {
+        $request = $this->getRequest();
+        if (! $request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
 
-    try {
-      $mgr = $this->getPagesManager();
-      $page = $mgr->getPageById($id);
-      $reply['status'] = 'OK';
-      if($action == 'publish') {
-        $mgr->validate($page);
-        $status = Page::STATUS_PUBLISHED;
-      } elseif($action == 'unpublish') {
-        $status = Page::STATUS_DTAFT;
-      }
+        $reply = array();
 
-      $page->setStatus($status);
-      $page = $mgr->updatePage($page);
+        try {
+            $mgr = $this->getPagesManager();
+            $page = $mgr->getPageById($id);
+            $reply['status'] = 'OK';
+            if ($action == 'publish') {
+                $mgr->validate($page);
+                $status = Page::STATUS_PUBLISHED;
+            } elseif ($action == 'unpublish') {
+                $status = Page::STATUS_DTAFT;
+            }
 
-      $reply['content'] = $this->statusControlAction($page)->getContent();
+            $page->setStatus($status);
+            $page = $mgr->updatePage($page);
 
-    } catch(\InvalidArgumentException $e) {
-      $reply['status'] = 'FAILED';
-      $reply['error'] = $e->getMessage();
+            $reply['content'] = $this->statusControlAction($page)->getContent();
+
+        } catch (\InvalidArgumentException $e) {
+            $reply['status'] = 'FAILED';
+            $reply['error'] = $e->getMessage();
+        }
+
+        $response = new Response(json_encode($reply));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
-    $response = new Response(json_encode($reply));
-    $response->headers->set('Content-Type', 'application/json');
+    /**
+     * Renders the status controlling part of the page
+     *
+     * @param Page $page
+     *
+     * @return Response
+     */
+    public function statusControlAction(Page $page)
+    {
+        $published = ($page->getStatus() === Page::STATUS_PUBLISHED) ? true : false;
+        $response = $this->render('ArnmPagesBundle:Pages:statusControl.html.twig', array(
+            'page' => $page,
+            'published' => $published
+        ));
 
-    return $response;
-  }
+        return $response;
+    }
 
-  /**
-   * Renders the status controlling part of the page
-   *
-   * @param Page $page
-   *
-   * @return Response
-   */
-  public function statusControlAction(Page $page)
-  {
-    $published = ($page->getStatus() === Page::STATUS_PUBLISHED) ? true : false;
-    $response = $this->render('ArnmPagesBundle:Pages:statusControl.html.twig', array(
-        'page' => $page,
-        'published' => $published
-    ));
-
-    return $response;
-  }
-
-  /**
-   * Gets pages manager object
-   *
-   * @return PagesManager
-   */
-  protected function getPagesManager()
-  {
-      return $this->get('arnm_pages.manager');
-  }
+    /**
+     * Gets pages manager object
+     *
+     * @return PagesManager
+     */
+    protected function getPagesManager()
+    {
+        return $this->get('arnm_pages.manager');
+    }
 }

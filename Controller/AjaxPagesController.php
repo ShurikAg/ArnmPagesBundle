@@ -14,6 +14,11 @@ use Arnm\PagesBundle\Entity\Page;
 class AjaxPagesController extends ArnmAjaxController
 {
 
+    /**
+     * Configured existing widgets
+     *
+     * @var array
+     */
     protected $config = array(
         'head' => array(
             'entityClass' => 'Page',
@@ -94,7 +99,7 @@ class AjaxPagesController extends ArnmAjaxController
      */
     protected function getConfigForEntity($entity)
     {
-        if(! isset($this->config[$entity])) {
+        if (! isset($this->config[$entity])) {
             throw new \RuntimeException("No config defined for entity: '" . $entity . "'!");
         }
 
@@ -116,9 +121,9 @@ class AjaxPagesController extends ArnmAjaxController
     /**
      * Gets an entity using manager object and validates if the entity is actually instaince of correct class.
      *
-     * @param int $id
+     * @param int    $id
      * @param object $mgr
-     * @param array $config
+     * @param array  $config
      *
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
@@ -129,7 +134,7 @@ class AjaxPagesController extends ArnmAjaxController
     {
         $className = $config['entityClass'];
         $getter = 'get' . $className . 'ById';
-        if(! method_exists($mgr, $getter)) {
+        if (! method_exists($mgr, $getter)) {
             throw new \RuntimeException("Method '" . $getter . "' does not exists in '" . get_class($mgr) . "'");
         }
 
@@ -138,7 +143,7 @@ class AjaxPagesController extends ArnmAjaxController
             $getter
         ), $id);
 
-        if(! ($obj instanceof $config['fullEntityClassName'])) {
+        if (! ($obj instanceof $config['fullEntityClassName'])) {
             throw new \InvalidArgumentException("Could not find an object of type '" . $className . "' by id '" . $id . "' from '" . get_class($mgr) . "'!");
         }
 
@@ -149,13 +154,13 @@ class AjaxPagesController extends ArnmAjaxController
      * Create an form for the entity
      *
      * @param object $obj
-     * @param array $config
+     * @param array  $config
      *
      * @return Symfony\Component\Form\AbstractType
      */
     protected function createEntityForm($obj, $config)
     {
-        if(empty($config['entityType'])) {
+        if (empty($config['entityType'])) {
             throw new \RuntimeException("The type for an entity is not defined");
         }
         $typeClassName = $config['entityType'];
@@ -191,7 +196,7 @@ class AjaxPagesController extends ArnmAjaxController
 
             $reply['status'] = 'OK';
             $reply['content'] = $content;
-            if($obj instanceof Entity) {
+            if ($obj instanceof Entity) {
                 $reply['entity'] = $obj->toArray();
             }
 
@@ -206,7 +211,7 @@ class AjaxPagesController extends ArnmAjaxController
     /**
      * This action serves the edit form for en entity
      *
-     * @param int $id
+     * @param int    $id
      * @param string $entity
      */
     public function editAction($id, $entity)
@@ -225,7 +230,8 @@ class AjaxPagesController extends ArnmAjaxController
             $form = $this->createEntityForm($obj, $config);
 
             //render response content string
-            $content = $this->renderView($config['editTemplate'], array(
+            $content = $this->renderView($config['editTemplate'],
+            array(
                 'obj' => $obj,
                 'form' => $form->createView()
             ));
@@ -244,7 +250,7 @@ class AjaxPagesController extends ArnmAjaxController
     /**
      * This action serves the edit form for en entity
      *
-     * @param int $id
+     * @param int    $id
      * @param string $entity
      */
     public function updateAction($id, $entity)
@@ -265,17 +271,18 @@ class AjaxPagesController extends ArnmAjaxController
             //check if it is post request and binf the form
             //get request
             $request = $this->getRequest();
-            if($request->getMethod() == 'POST') {
+            if ($request->getMethod() == 'POST') {
                 //binf the form
                 $form->bindRequest($request);
                 //if valid
-                if($form->isValid()) {
+                if ($form->isValid()) {
                     //calculate update method name
                     $className = $config['entityClass'];
                     $updateMethod = 'update' . $className;
                     $obj = $mgr->$updateMethod($obj);
                     //generate the new content
-                    $content = $this->renderView($config['showTemplate'], array(
+                    $content = $this->renderView($config['showTemplate'],
+                    array(
                         'obj' => $obj
                     ));
                 } else {
@@ -290,7 +297,7 @@ class AjaxPagesController extends ArnmAjaxController
 
             $reply['status'] = 'OK';
             $reply['content'] = $content;
-            if($obj instanceof Entity) {
+            if ($obj instanceof Entity) {
                 $reply['entity'] = $obj->toArray();
             }
 
@@ -302,5 +309,3 @@ class AjaxPagesController extends ArnmAjaxController
         return $this->createResponse($reply);
     }
 }
-
-?>

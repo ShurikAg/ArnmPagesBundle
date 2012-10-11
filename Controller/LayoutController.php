@@ -38,12 +38,12 @@ class LayoutController extends Controller
 
         $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
-        if (!$entity) {
+        if (! $entity) {
             throw $this->createNotFoundException('Unable to find Layout entity.');
         }
 
         return $this->render('ArnmPagesBundle:Layout:show.html.twig', array(
-            'entity'      => $entity,
+            'entity' => $entity
         ));
     }
 
@@ -54,11 +54,12 @@ class LayoutController extends Controller
     public function newAction()
     {
         $entity = new Layout();
-        $form   = $this->createForm(new LayoutType(), $entity);
+        $form = $this->createForm(new LayoutType(), $entity);
 
-        return $this->render('ArnmPagesBundle:Layout:new.html.twig', array(
+        return $this->render('ArnmPagesBundle:Layout:new.html.twig',
+        array(
             'entity' => $entity,
-            'form'   => $form->createView()
+            'form' => $form->createView()
         ));
     }
 
@@ -68,9 +69,9 @@ class LayoutController extends Controller
      */
     public function createAction()
     {
-        $entity  = new Layout();
+        $entity = new Layout();
         $request = $this->getRequest();
-        $form    = $this->createForm(new LayoutType(), $entity);
+        $form = $this->createForm(new LayoutType(), $entity);
         $form->bindRequest($request);
 
         if ($form->isValid()) {
@@ -78,13 +79,16 @@ class LayoutController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('Araneum_layout_show', array('id' => $entity->getId())));
-            
+            return $this->redirect($this->generateUrl('Araneum_layout_show', array(
+                'id' => $entity->getId()
+            )));
+
         }
 
-        return $this->render('ArnmPagesBundle:Layout:new.html.twig', array(
+        return $this->render('ArnmPagesBundle:Layout:new.html.twig',
+        array(
             'entity' => $entity,
-            'form'   => $form->createView()
+            'form' => $form->createView()
         ));
     }
 
@@ -98,15 +102,16 @@ class LayoutController extends Controller
 
         $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
-        if (!$entity) {
+        if (! $entity) {
             throw $this->createNotFoundException('Unable to find Layout entity.');
         }
 
         $editForm = $this->createForm(new LayoutType(), $entity);
 
-        return $this->render('ArnmPagesBundle:Layout:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return $this->render('ArnmPagesBundle:Layout:edit.html.twig',
+        array(
+            'entity' => $entity,
+            'edit_form' => $editForm->createView()
         ));
     }
 
@@ -120,11 +125,11 @@ class LayoutController extends Controller
 
         $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
-        if (!$entity) {
+        if (! $entity) {
             throw $this->createNotFoundException('Unable to find Layout entity.');
         }
 
-        $editForm   = $this->createForm(new LayoutType(), $entity);
+        $editForm = $this->createForm(new LayoutType(), $entity);
 
         $request = $this->getRequest();
 
@@ -134,12 +139,15 @@ class LayoutController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('Araneum_layout_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('Araneum_layout_edit', array(
+                'id' => $id
+            )));
         }
 
-        return $this->render('ArnmPagesBundle:Layout:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+        return $this->render('ArnmPagesBundle:Layout:edit.html.twig',
+        array(
+            'entity' => $entity,
+            'edit_form' => $editForm->createView()
         ));
     }
 
@@ -153,7 +161,7 @@ class LayoutController extends Controller
             $em = $this->getDoctrine()->getEntityManager();
             $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
-            if (!$entity) {
+            if (! $entity) {
                 throw $this->createNotFoundException('Unable to find Layout entity.');
             }
 
