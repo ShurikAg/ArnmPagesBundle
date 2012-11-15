@@ -1,8 +1,10 @@
 <?php
 namespace Arnm\PagesBundle\Controller;
 
+use Arnm\PagesBundle\Model\PageContentResplacement;
 use Arnm\CoreBundle\Controllers\ArnmController;
 use Arnm\PagesBundle\Entity\Page;
+use Symfony\Component\HttpFoundation\Response;
 /**
  * This cotroller is responsible for pages representation on the frontend
  *
@@ -35,6 +37,30 @@ class PageController extends ArnmController
         return $this->render($template, array(
             'page' => $page,
             'layout' => $layout
+        ));
+    }
+
+    /**
+     * Inherits the given page and replaces a specific area with a given content
+     *
+     * @param Page $page
+     * @param string $area
+     * @param string $content
+     *
+     * @return Response
+     */
+    public function inheritPageAction(Page $page, $area, PageContentResplacement $replacement)
+    {
+        //get the layout that the page will be rendered in
+        $layout = $page->getLayout()->getLayout();
+        //get the template for this page
+        $template = $page->getTemplate()->getName();
+
+        return $this->render($template, array(
+            'page' => $page,
+            'layout' => $layout,
+            'replace' => $area,
+            'replacement' => $replacement
         ));
     }
 
