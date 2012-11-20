@@ -13,16 +13,16 @@ class PageTemplateType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('template', null, array(
-        'label' => 'page.form.template.label', 
+        'label' => 'page.form.template.label',
         'attr' => array(
-            'rel' => 'tooltip', 
-            'title' => 'page.form.template.help', 
-            'class' => 'span5'
-        ), 
+            'rel' => 'tooltip',
+            'title' => 'page.form.template.help',
+            'class' => 'span12'
+        ),
         'required' => false
     ));
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.FormTypeInterface::getName()
@@ -31,7 +31,7 @@ class PageTemplateType extends AbstractType
   {
     return 'layout';
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.AbstractType::getDefaultOptions()

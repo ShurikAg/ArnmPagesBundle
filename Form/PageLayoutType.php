@@ -13,16 +13,16 @@ class PageLayoutType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('layout', null, array(
-        'label' => 'page.form.layout.label', 
+        'label' => 'page.form.layout.label',
         'attr' => array(
-            'rel' => 'tooltip', 
-            'title' => 'page.form.layout.help', 
-            'class' => 'span5'
-        ), 
+            'rel' => 'tooltip',
+            'title' => 'page.form.layout.help',
+            'class' => 'span12'
+        ),
         'required' => false
     ));
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.FormTypeInterface::getName()
@@ -31,7 +31,7 @@ class PageLayoutType extends AbstractType
   {
     return 'layout';
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.AbstractType::getDefaultOptions()
