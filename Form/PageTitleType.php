@@ -18,16 +18,16 @@ class PageTitleType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('title', 'text', array(
-        'label' => 'page.form.title.label', 
+        'label' => 'page.form.title.label',
         'attr' => array(
-            'rel' => 'tooltip', 
-            'title' => 'page.form.title.help', 
-            'class' => 'span4'
-        ), 
+            'rel' => 'tooltip',
+            'title' => 'page.form.title.help',
+            'class' => 'input-xlarge'
+        ),
         'required' => false
     ));
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.FormTypeInterface::getName()
@@ -36,7 +36,7 @@ class PageTitleType extends AbstractType
   {
     return 'page';
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.AbstractType::getDefaultOptions()

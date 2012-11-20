@@ -18,17 +18,17 @@ class PageDescriptionType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('description', 'textarea', array(
-        'label' => 'page.form.description.label', 
+        'label' => 'page.form.description.label',
         'attr' => array(
-            'rel' => 'tooltip', 
-            'title' => 'page.form.description.help', 
-            'class' => 'span4'
-        ), 
+            'rel' => 'tooltip',
+            'title' => 'page.form.description.help',
+            'class' => 'input-xlarge'
+        ),
         'required' => false,
         'trim' => true
     ));
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.FormTypeInterface::getName()
@@ -37,7 +37,7 @@ class PageDescriptionType extends AbstractType
   {
     return 'page';
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.AbstractType::getDefaultOptions()

@@ -18,17 +18,17 @@ class PageKeywordsType extends AbstractType
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
     $builder->add('keywords', 'textarea', array(
-        'label' => 'page.form.keywords.label', 
+        'label' => 'page.form.keywords.label',
         'attr' => array(
-            'rel' => 'tooltip', 
-            'title' => 'page.form.keywords.help', 
-            'class' => 'span4'
-        ), 
+            'rel' => 'tooltip',
+            'title' => 'page.form.keywords.help',
+            'class' => 'input-xlarge'
+        ),
         'required' => false,
         'trim' => true
     ));
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.FormTypeInterface::getName()
@@ -37,7 +37,7 @@ class PageKeywordsType extends AbstractType
   {
     return 'page';
   }
-  
+
   /**
    * (non-PHPdoc)
    * @see Symfony\Component\Form.AbstractType::getDefaultOptions()
