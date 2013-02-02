@@ -12,27 +12,16 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  */
 class PageRepository extends NestedTreeRepository
 {
-  
-  /**
-   * Fetched the whole hirarchy of the pages tree
-   * 
-   * @return array
-   */
-  public function fetchFullHirarchy()
-  {
-    $tree = $this->childrenHierarchy();
-    return $tree;
-  }
-  
-  /**
-   * Get a single root node, in this system, at this point should exist only one such node
-   * 
-   * @throws NonUniqueResultException
-   *
-   * @return Page
-   */
-  public function getRootNode()
-  {
-    return $this->getRootNodesQuery()->getSingleResult();
-  }
+
+    /**
+     * Fetched the whole hirarchy of the pages tree
+     *
+     * @return array
+     */
+    public function fetchFullHirarchy()
+    {
+        $tree = $this->childrenHierarchy();
+        return $tree;
+    }
+
 }
