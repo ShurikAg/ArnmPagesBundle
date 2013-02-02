@@ -1,6 +1,8 @@
 <?php
 namespace Arnm\PagesBundle\Controller;
 
+use Symfony\Component\Validator\Constraints\Count;
+
 use Arnm\PagesBundle\Model\PageContentResplacement;
 use Arnm\CoreBundle\Controllers\ArnmController;
 use Arnm\PagesBundle\Entity\Page;
@@ -56,12 +58,13 @@ class PageController extends ArnmController
         //get the template for this page
         $template = $page->getTemplate()->getName();
 
-        return $this->render($template, array(
-            'page' => $page,
-            'layout' => $layout,
-            'replace' => $area,
-            'replacement' => $replacement
-        ));
+        return $this->render($template,
+            array(
+                'page' => $page,
+                'layout' => $layout,
+                'replace' => $area,
+                'replacement' => $replacement
+            ));
     }
 
     /**
@@ -74,7 +77,9 @@ class PageController extends ArnmController
      */
     public function widgetListAction(Page $page, $areaCode)
     {
-        $widgets = $page->getWidgetsForArea($areaCode);
+        $widgetsMgr = $this->get('arnm_widget.manager');
+        $allWidgets = $widgetsMgr->findAllWidgetForPage($page);
+        $widgets = $widgetsMgr->filterWidgetsByArea($allWidgets, $areaCode);
 
         $wArray = array();
         foreach ($widgets as $widget) {

@@ -129,12 +129,12 @@ class Page extends Entity implements Node
      * @ORM\JoinColumn(name="template_id", referencedColumnName="id", nullable=true)
      */
     private $template;
-    
+
     /**
      * @ORM\Column(name="status", type="string")
      */
     private $status;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Arnm\WidgetBundle\Entity\Widget", mappedBy="page")
      * @ORM\OrderBy({"sequence" = "ASC"})
@@ -337,7 +337,7 @@ class Page extends Entity implements Node
     {
         return $this->children;
     }
-    
+
     /**
      * Retuns string that represents the page.
      *
@@ -347,7 +347,7 @@ class Page extends Entity implements Node
     {
         return $this->getTitle();
     }
-    
+
     /**
      * Set parentId
      *
@@ -357,7 +357,7 @@ class Page extends Entity implements Node
     {
         $this->parentId = $parentId;
     }
-    
+
     /**
      * Get parentId
      *
@@ -367,7 +367,7 @@ class Page extends Entity implements Node
     {
         return $this->parentId;
     }
-    
+
     /**
      * Set pathSlug
      *
@@ -377,7 +377,7 @@ class Page extends Entity implements Node
     {
         $this->pathSlug = $pathSlug;
     }
-    
+
     /**
      * Get pathSlug
      *
@@ -387,7 +387,7 @@ class Page extends Entity implements Node
     {
         return $this->pathSlug;
     }
-    
+
     /**
      * Determines if the node is a root
      *
@@ -397,7 +397,7 @@ class Page extends Entity implements Node
     {
         return ($this->getId() == $this->getRoot() && $this->getLvl() == 0);
     }
-    
+
     /**
      * Set layout
      *
@@ -407,7 +407,7 @@ class Page extends Entity implements Node
     {
         $this->layout = $layout;
     }
-    
+
     /**
      * Get layout
      *
@@ -424,7 +424,7 @@ class Page extends Entity implements Node
     {
         return $this->status;
     }
-    
+
     /**
      * @param string $status
      */
@@ -436,7 +436,7 @@ class Page extends Entity implements Node
         }
         $this->status = $status;
     }
-    
+
     /**
      * Set template
      *
@@ -446,7 +446,7 @@ class Page extends Entity implements Node
     {
         $this->template = $template;
     }
-    
+
     /**
      * Get template
      *
@@ -456,7 +456,7 @@ class Page extends Entity implements Node
     {
         return $this->template;
     }
-    
+
     /**
      * Add widgets
      *
@@ -468,7 +468,7 @@ class Page extends Entity implements Node
         $this->widgets[] = $widget;
         return $this;
     }
-    
+
     /**
      * Get widgets
      *
@@ -477,49 +477,5 @@ class Page extends Entity implements Node
     public function getWidgets()
     {
         return $this->widgets;
-    }
-    
-    /**
-     * Gets a list of widgets ordered by sequence (by default)
-     *
-     * @param string $areaCode
-     *
-     * @return array
-     */
-    public function getWidgetsForArea($areaCode)
-    {
-        //check the this area is actually related to this page
-        if(! $this->isAreaExists($areaCode)) {
-            throw new \InvalidArgumentException("Area '" . $areaCode . "' is not part of page '" . $this->getId() . "'");
-        }
-        
-        $widgets = array();
-        $allWidgets = $this->getWidgets();
-        foreach ($allWidgets as $widget) {
-            if($widget->getAreaCode() == $areaCode) {
-                $widgets[] = $widget;
-            }
-        }
-        
-        return $widgets;
-    }
-    
-    /**
-     * Determones if there is an area with given code is actually assigned to this page
-     *
-     * @param string $areaCode
-     *
-     * @return boolean
-     */
-    protected function isAreaExists($areaCode)
-    {
-        $allAreas = $this->getTemplate()->getAreas();
-        foreach ($allAreas as $area) {
-            if($area->getCode() == $areaCode) {
-                return true;
-            }
-        }
-        
-        return false;
     }
 }
