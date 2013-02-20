@@ -57,7 +57,9 @@ class TemplateOrganizerController extends ArnmAjaxController
      */
     public function widgetListAction(Page $page, $areaCode)
     {
-        $widgets = $page->getWidgetsForArea($areaCode);
+        $widgetsMgr = $this->get('arnm_widget.manager');
+        $allWidgets = $widgetsMgr->findAllWidgetForPage($page);
+        $widgets = $widgetsMgr->filterWidgetsByArea($allWidgets, $areaCode);
 
         return $this->render('ArnmPagesBundle:Pages/Widget:list.html.twig', array(
             'widgets' => $widgets
