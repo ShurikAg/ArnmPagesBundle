@@ -20,7 +20,7 @@
 			</div>
 			<div class="accordion-body widget-list">
 				{% for key,widget in widgets %}
-				    {{ render(controller("ArnmPagesBundle:TemplateOrganizer:widget", { 'widget' : widget, 'status' : 'new' } }}
+				    {{ render(controller("ArnmPagesBundle:TemplateOrganizer:widget", { 'widget' : widget, 'status' : 'new' })) }}
 				{% endfor %}
 			</div>
 		</div>
