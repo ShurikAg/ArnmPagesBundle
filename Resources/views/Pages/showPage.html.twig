@@ -21,7 +21,7 @@
 		</li>
 	</ul>
 	<div id="page-status">
-		{% render "ArnmPagesBundle:Pages:statusControl" with {'page': page} %}
+		{{ render(controller("ArnmPagesBundle:Pages:statusControl", {'page': page})) }}
 	</div>
 {% endblock %}
 

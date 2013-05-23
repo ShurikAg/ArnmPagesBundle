@@ -1,5 +1,5 @@
 {% for widget in widgets %}
 	<div>
-    	{% render widget.controller with { 'widget': widget.widget } %}
+    	{{ render(controller(widget.controller, { 'widget': widget.widget })) }}
 	</div>
 {% endfor %}

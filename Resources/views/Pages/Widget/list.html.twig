@@ -1,3 +1,3 @@
 {% for key,widget in widgets %}
-    {% render "ArnmPagesBundle:TemplateOrganizer:widget" with { 'widget': widget } %}
+    {{ render(controller("ArnmPagesBundle:TemplateOrganizer:widget", { 'widget': widget })) }}
 {% endfor %}
