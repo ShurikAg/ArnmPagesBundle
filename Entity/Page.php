@@ -40,9 +40,9 @@ class Page extends Entity implements Node
      * @ORM\Column(name="title", type="string", length=255)
      *
      * @Assert\NotBlank()
-     * @Assert\MinLength(
-     * limit=3,
-     * message="Title must be at least {{ limit }} characters."
+     * @Assert\Length(
+     * min=3,
+     * minMessage="Title must be at least {{ limit }} characters."
      * )
      */
     private $title;
@@ -53,9 +53,9 @@ class Page extends Entity implements Node
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
      *
      * @Assert\Type(type="string", message="The value {{ value }} is not a valid {{ type }}.")
-     * @Assert\MinLength(
-     * limit=3,
-     * message="Slug must be at least {{ limit }} characters."
+     * @Assert\Length(
+     * min=3,
+     * minMessage="Slug must be at least {{ limit }} characters."
      * )
      */
     private $slug;
@@ -69,11 +69,11 @@ class Page extends Entity implements Node
      * @var string $description
      *
      * @ORM\Column(name="description", type="string", length=160, nullable=true)
-     * @Assert\MinLength(
-     * limit=3,
-     * message="Description must have at least {{ limit }} characters."
+     * @Assert\Length(
+     * min=3,
+     * max=160,
+     * minMessage="Description must have at least {{ limit }} characters."
      * )
-     * @Assert\MaxLength(160)
      */
     private $description;
     /**
@@ -81,11 +81,11 @@ class Page extends Entity implements Node
      *
      * @ORM\Column(name="keywords", type="string", length=160, nullable=true)
      *
-     * @Assert\MinLength(
-     * limit=3,
-     * message="Keywords must have at least {{ limit }} characters."
+     * @Assert\Length(
+     * min=3,
+     * max=160,
+     * minMessage="Keywords must have at least {{ limit }} characters."
      * )
-     * @Assert\MaxLength(160)
      */
     private $keywords;
     /**

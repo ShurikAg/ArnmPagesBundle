@@ -41,12 +41,12 @@ class PagesManager
      */
     protected function getEntityManager()
     {
-        return $this->getDoctrine()->getEntityManager();
+        return $this->getDoctrine()->getManager();
     }
     /**
      * Gets doctrin service object
      *
-     * @return Registry
+     * @return Doctrine\Bundle\DoctrineBundle\Registry
      */
     protected function getDoctrine()
     {
