@@ -19,7 +19,7 @@ class TemplateController extends ArnmController
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ArnmPagesBundle:Template')->findAll();
 
@@ -34,7 +34,7 @@ class TemplateController extends ArnmController
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ArnmPagesBundle:Template')->find($id);
 
@@ -74,7 +74,7 @@ class TemplateController extends ArnmController
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
@@ -96,7 +96,7 @@ class TemplateController extends ArnmController
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ArnmPagesBundle:Template')->find($id);
 
@@ -119,7 +119,7 @@ class TemplateController extends ArnmController
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ArnmPagesBundle:Template')->find($id);
 
@@ -156,7 +156,7 @@ class TemplateController extends ArnmController
     public function deleteAction($id)
     {
         if ($id) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('ArnmPagesBundle:Template')->find($id);
 
             if (! $entity) {

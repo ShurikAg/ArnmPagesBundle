@@ -19,7 +19,7 @@ class LayoutController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('ArnmPagesBundle:Layout')->findAll();
 
@@ -34,7 +34,7 @@ class LayoutController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
@@ -75,7 +75,7 @@ class LayoutController extends Controller
         $form->bindRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
@@ -98,7 +98,7 @@ class LayoutController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
@@ -121,7 +121,7 @@ class LayoutController extends Controller
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
@@ -158,7 +158,7 @@ class LayoutController extends Controller
     public function deleteAction($id)
     {
         if ($id) {
-            $em = $this->getDoctrine()->getEntityManager();
+            $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('ArnmPagesBundle:Layout')->find($id);
 
             if (! $entity) {
