@@ -20,7 +20,7 @@ class PagesManagerTest extends \PHPUnit_Framework_TestCase
     public function testFetchFullHirarchy()
     {
         $doctrine = $this->getMock('Doctrine\Bundle\DoctrineBundle\Registry', array(
-            'getEntityManager'
+            'getManager'
         ), array(), '', false, true, true);
         $em = $this->getMock('Doctrine\ORM\EntityManager', array(
             'getRepository'
@@ -30,7 +30,7 @@ class PagesManagerTest extends \PHPUnit_Framework_TestCase
         ));
 
         $doctrine->expects($this->once())
-            ->method('getEntityManager')
+            ->method('getManager')
             ->will($this->returnValue($em));
 
         $em->expects($this->once())

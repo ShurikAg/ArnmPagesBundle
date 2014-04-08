@@ -1,7 +1,7 @@
 {
     "name": "iibs/arnm-pages",
     "description": "Araneum's pages bundle",
-    "version": "1.0.0-beta",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Alex Agulyansky",
@@ -16,10 +16,10 @@
     "target-dir": "Arnm/PagesBundle",
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.2.*",
+        "symfony/symfony": "2.4.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "stof/doctrine-extensions-bundle": "dev-master",
         "stfalcon/tinymce-bundle": "v0.2.0",
-        "iibs/arnm-core": "dev-master"
+        "iibs/arnm-core": "1.0.0"
     }
 }
