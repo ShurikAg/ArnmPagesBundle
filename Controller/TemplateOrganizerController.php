@@ -143,7 +143,7 @@ class TemplateOrganizerController extends ArnmAjaxController
 
             $reply['status'] = 'OK';
 
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $reply['status'] = 'FAIL';
             $reply['reason'] = $e->getMessage();
         }

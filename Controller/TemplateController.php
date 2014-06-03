@@ -71,7 +71,7 @@ class TemplateController extends ArnmController
         $entity = new Template();
         $request = $this->getRequest();
         $form = $this->createForm(new TemplateType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -131,7 +131,7 @@ class TemplateController extends ArnmController
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);

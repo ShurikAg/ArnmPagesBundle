@@ -15,14 +15,14 @@
 	
 	{% if form %}
 		<form action="{{ path('Araneum_template_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-			<fieldset>
-				{{ form_widget(form) }}
-				<div class="form-actions">
-			    	<input class="btn btn-primary" type="submit" value="{{ 'template.form.action.create'|trans }}"/>
-			    	<input class="btn" type="reset" value="{{ 'default.form.action.reset'|trans }}"/>
-			    	<a  class="btn" href="{{ path('Araneum_template') }}">{{ 'default.form.action.back_to_list'|trans }}</a>
-			    </div>
-		    </fieldset>
+			{{ form_widget(form) }}
+			<div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+    		    	<input class="btn btn-primary" type="submit" value="{{ 'template.form.action.create'|trans }}"/>
+    		    	<input class="btn" type="reset" value="{{ 'default.form.action.reset'|trans }}"/>
+    		    	<a  class="btn" href="{{ path('Araneum_template') }}">{{ 'default.form.action.back_to_list'|trans }}</a>
+    		    </div>
+		    </div>
 		</form>
 	{% endif%}
 {% endblock %}

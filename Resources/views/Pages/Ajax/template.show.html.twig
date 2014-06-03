@@ -1,8 +1,0 @@
-<label>{{ 'page.form.template.label'|trans }}</label>
-<div class="controls">
-	<span  class="span5">{% if obj.template %}{{ obj.template.name }}{% endif %}</span>
-	<a class="btn btn-small dinamic" data-toggle="ajax-control" rel="page-template" href="{{ path('Araneum_pages_ajax_template_edit', {'id': obj.id}) }}">{{ 'default.label.change'|trans }}</a>
-</div>
-<div class="hidden-controls">
-	<a href="{{ path('Araneum_pages_ajax_template_organizer_show', {'id': obj.id}) }}" id="template-organizer-toggle" data-toggle="ajax-control" rel="template-organizer">Template Organizer</a>
-</div>

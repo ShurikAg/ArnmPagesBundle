@@ -2,6 +2,8 @@
 
 namespace Arnm\PagesBundle\Entity;
 
+use Arnm\CoreBundle\Entity\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Arnm\PagesBundle\Entity\Page;
@@ -11,7 +13,7 @@ use Arnm\PagesBundle\Entity\Page;
  * @ORM\Table(name="layout")
  * @ORM\Entity(repositoryClass="Arnm\PagesBundle\Entity\LayoutRepository")
  */
-class Layout
+class Layout extends Entity
 {
     /**
      * @var integer $id
@@ -21,12 +23,12 @@ class Layout
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string $layout
      *
      * @ORM\Column(name="layout", type="string", length=255)
-     * 
+     *
      * @Assert\NotBlank()
      */
     private $layout;
@@ -34,7 +36,7 @@ class Layout
      * @ORM\OneToMany(targetEntity="Page", mappedBy="layout")
      */
     private $pages;
-    
+
     /**
      * Constractor
      */
@@ -42,17 +44,17 @@ class Layout
     {
         $this->pages = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * Set layout
      *
@@ -62,17 +64,17 @@ class Layout
     {
         $this->layout = $layout;
     }
-    
+
     /**
      * Get layout
      *
-     * @return string 
+     * @return string
      */
     public function getLayout()
     {
         return $this->layout;
     }
-    
+
     /**
      * Add pages
      *
@@ -82,19 +84,19 @@ class Layout
     {
         $this->pages[] = $page;
     }
-    
+
     /**
      * Get pages
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getPages()
     {
         return $this->pages;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function __toString()

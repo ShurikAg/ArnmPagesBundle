@@ -144,6 +144,7 @@ class PagesManager
      */
     public function updatePage(Page $page)
     {
+        $this->getEntityManager()->persist($page);
         $this->getEntityManager()->flush();
 
         //update the slugs

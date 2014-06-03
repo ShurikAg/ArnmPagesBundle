@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="alert alert-info hint">
+            <span class="label label-info">{{ 'default.label.info'|trans }}</span>
+	        <p>{{ 'page.show.info'|trans|raw }}</p>
+	    </div>
+	    <ul class="nav nav-tabs nav-stacked page-components-nav">
+	        <li>
+	            <a href="#/header">{{ 'page.elements.head'|trans }}</a>
+	        </li>
+	        <li>
+	           <div>
+				   <a href="#/layout">
+				      {{ 'page.elements.layout'|trans }}
+				   </a>
+	               <a class="btn template-button" href="#/template">{{ 'page.elements.template'|trans }}</a>
+	           </div>
+	        </li>
+	    </ul>
+	    <div id="page-status">
+            <div class="alert alert-success hint" ng-if="page.status == 'published'">
+                <span class="label label-success">{{ 'page.status.heading'|trans }}</span>
+                <p>{{ 'page.status.published.info'|trans }}</p>
+                <p class="align-right"><button class="btn">{{ 'page.status.action.unpublish'|trans }}</button></p>
+            </div>
+            <div class="alert alert-warning hint" ng-if="page.status == 'draft'">
+                <span class="label label-warning">{{ 'page.status.heading'|trans }}</span>
+                <p>{{ 'page.status.draft.info'|trans }}</p>
+                <p class="align-right"><button class="btn btn-primary" >{{ 'page.status.action.publish'|trans }}</button></p>
+            </div>
+	    </div>
+    </div>
+    <div class="col-md-10">
+        <div ng-include="contentTmpl"></div>
+    </div>
+</div>

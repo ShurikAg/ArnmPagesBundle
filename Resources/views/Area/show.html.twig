@@ -10,20 +10,22 @@
 		<h2>{{ 'area.form.title.show'|trans({}, 'area') }}</h2>
 	</div>
 
-	<table class="table">
-	    <thead>
-	        <tr>
-	            <th>{{ 'default.label.id'|trans }}</th>
-	            <td>{{ entity.id }}</td>
-	        </tr>
-	    </thead>
-	    <tbody>
-	        <tr>
-	            <th>{{ 'area.label.code'|trans({}, 'area') }}</th>
-	            <td>{{ entity.code }}</td>
-	        </tr>
-	    </tbody>
-	</table>
+	<div class="table-responsive">
+        <table class="table table-hover">
+    	    <thead>
+    	        <tr>
+    	            <th>{{ 'default.label.id'|trans }}</th>
+    	            <td>{{ entity.id }}</td>
+    	        </tr>
+    	    </thead>
+    	    <tbody>
+    	        <tr>
+    	            <th>{{ 'area.label.code'|trans({}, 'area') }}</th>
+    	            <td>{{ entity.code }}</td>
+    	        </tr>
+    	    </tbody>
+    	</table>
+	</div>
 	
 	<div class="well">
 	    <a href="{{ path('Araneum_area', {'templateId': template.id}) }}" class="btn">

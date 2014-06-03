@@ -57,7 +57,7 @@ class PagesController extends ArnmController
         $pageForm = $this->createForm(new NewPageType(), $page);
 
         if ($request->getMethod() == 'POST') {
-            $pageForm->bindRequest($request);
+            $pageForm->bind($request);
 
             if ($pageForm->isValid()) {
                 //handle populated page object
@@ -166,24 +166,6 @@ class PagesController extends ArnmController
 
         $response = new Response(json_encode($reply));
         $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
-    }
-
-    /**
-     * Renders the status controlling part of the page
-     *
-     * @param Page $page
-     *
-     * @return Response
-     */
-    public function statusControlAction(Page $page)
-    {
-        $published = ($page->getStatus() === Page::STATUS_PUBLISHED) ? true : false;
-        $response = $this->render('ArnmPagesBundle:Pages:statusControl.html.twig', array(
-            'page' => $page,
-            'published' => $published
-        ));
 
         return $response;
     }

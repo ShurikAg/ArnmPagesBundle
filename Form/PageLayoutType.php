@@ -1,6 +1,7 @@
 <?php
 namespace Arnm\PagesBundle\Form;
 
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractType;
 /**
@@ -10,36 +11,40 @@ use Symfony\Component\Form\AbstractType;
  */
 class PageLayoutType extends AbstractType
 {
-  public function buildForm(FormBuilderInterface $builder, array $options)
-  {
-    $builder->add('layout', null, array(
-        'label' => 'page.form.layout.label',
-        'attr' => array(
-            'rel' => 'tooltip',
-            'title' => 'page.form.layout.help',
-            'class' => 'span12'
-        ),
-        'required' => false
-    ));
-  }
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('layout', 'entity', array(
+            'class' => 'ArnmPagesBundle:Layout',
+            'property' => 'layout',
+            'label' => 'page.form.layout.label',
+            'attr' => array(
+                'data-toggle' => 'popover',
+                'content' => 'page.form.layout.help',
+                'class' => 'form-control',
+                'ng-model' => 'page.layout.id'
+            ),
+            'required' => false
+        ));
+    }
 
-  /**
-   * (non-PHPdoc)
-   * @see Symfony\Component\Form.FormTypeInterface::getName()
-   */
-  public function getName()
-  {
-    return 'layout';
-  }
+    /**
+     * (non-PHPdoc)
+     * @see Symfony\Component\Form.FormTypeInterface::getName()
+     */
+    public function getName()
+    {
+        return 'page';
+    }
 
-  /**
-   * (non-PHPdoc)
-   * @see Symfony\Component\Form.AbstractType::getDefaultOptions()
-   */
-  public function getDefaultOptions(array $options)
-  {
-    return array(
-        'data_class' => 'Arnm\PagesBundle\Entity\Page'
-    );
-  }
+    /**
+     * {@inheritdoc}
+     * @see Symfony\Component\Form.AbstractType::setDefaultOptions()
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'Arnm\PagesBundle\Entity\Page',
+            'csrf_protection' => false
+        ));
+    }
 }

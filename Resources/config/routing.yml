@@ -15,6 +15,7 @@ ArnmPagesBundle_page_delete:
 ArnmPagesBundle_page_sort:
     pattern:  /araneum/pages/sort
     defaults: { _controller: ArnmPagesBundle:Pages:sort }
+    
 ArnmPagesBundle_page_publish:
     pattern:  /araneum/page/{id}/publish
     defaults: { _controller: ArnmPagesBundle:Pages:updateStatus, action: publish }
@@ -27,129 +28,80 @@ ArnmPagesBundle_page_unpublish:
     requirements:
         id:  \d+
         _method:  GET
-    
-#AJAX handler for pages management
-Araneum_pages_ajax_header:
-    pattern:  /araneum/page/{id}/head
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: head }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_layout:
-    pattern:  /araneum/page/{id}/layout
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: page_layout }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_template:
-    pattern:  /araneum/page/{id}/template
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: page_template }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_template_show:
-    pattern:  /araneum/page/{id}/template/show
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: template }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_template_edit:
-    pattern:  /araneum/page/{id}/template/edit
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:edit, entity: template }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_template_update:
-    pattern:  /araneum/page/{id}/template/update
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:update, entity: template }
-    requirements:
-        id:  \d+
-        _method:  POST
-Araneum_pages_ajax_layout_show:
-    pattern:  /araneum/page/{id}/layout/show
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: layout }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_layout_edit:
-    pattern:  /araneum/page/{id}/layout/edit
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:edit, entity: layout }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_layout_update:
-    pattern:  /araneum/page/{id}/layout/update
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:update, entity: layout }
-    requirements:
-        id:  \d+
-        _method:  POST
-Araneum_pages_ajax_title_show:
-    pattern:  /araneum/page/{id}/title/show
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: title }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_title_edit:
-    pattern:  /araneum/page/{id}/title/edit
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:edit, entity: title }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_title_update:
-    pattern:  /araneum/page/{id}/title/update
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:update, entity: title }
-    requirements:
-        id:  \d+
-        _method:  POST
-Araneum_pages_ajax_description_show:
-    pattern:  /araneum/page/{id}/description/show
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: description }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_description_edit:
-    pattern:  /araneum/page/{id}/description/edit
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:edit, entity: description }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_description_update:
-    pattern:  /araneum/page/{id}/description/update
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:update, entity: description }
-    requirements:
-        id:  \d+
-        _method:  POST
-Araneum_pages_ajax_keywords_show:
-    pattern:  /araneum/page/{id}/keywords/show
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: keywords }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_keywords_edit:
-    pattern:  /araneum/page/{id}/keywords/edit
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:edit, entity: keywords }
-    requirements:
-        id:  \d+
-        _method:  GET
-Araneum_pages_ajax_keywords_update:
-    pattern:  /araneum/page/{id}/keywords/update
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:update, entity: keywords }
-    requirements:
-        id:  \d+
-        _method:  POST
         
-Araneum_pages_ajax_template_organizer_show:
-    pattern:  /araneum/page/{id}/template/organizer/show
-    defaults: { _controller: ArnmPagesBundle:AjaxPages:show, entity: template_organizer }
+#Views controller
+araneum_page_view_manage_page:
+    pattern:  /araneum/view/page/manage-page.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:managePage}
+    requirements:
+        _method:  GET
+araneum_page_view_header:
+    pattern:  /araneum/view/page/header.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:header}
+    requirements:
+        _method:  GET
+araneum_page_view_layout:
+    pattern:  /araneum/view/page/layout.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:layout}
+    requirements:
+        _method:  GET
+araneum_page_view_template:
+    pattern:  /araneum/view/page/template.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:template}
+    requirements:
+        _method:  GET
+araneum_page_view_template_organizer:
+    pattern:  /araneum/view/page/templateOrganizer/{id}.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:templateOrganizer}
     requirements:
         id:  \d+
         _method:  GET
-Araneum_pages_ajax_template_organizer_sort_widget:
-    pattern:  /araneum/page/{id}/widget/sort
-    defaults: { _controller: ArnmPagesBundle:TemplateOrganizer:sortWidget }
+    
+#REST handler for pages management
+araneum_page_rest_get:
+    pattern:  /araneum/rest/page/{id}
+    defaults: { _controller: ArnmPagesBundle:PageRest:index}
     requirements:
         id:  \d+
+        _method:  GET
+araneum_page_rest_header_update:
+    pattern:  /araneum/rest/page/{id}/header
+    defaults: { _controller: ArnmPagesBundle:PageRest:updateHeader}
+    requirements:
+        id:  \d+
+        _method:  PUT
+araneum_page_rest_layout_update:
+    pattern:  /araneum/rest/page/{id}/layout
+    defaults: { _controller: ArnmPagesBundle:PageRest:updateLayout}
+    requirements:
+        id:  \d+
+        _method:  PUT
+araneum_page_rest_template_update:
+    pattern:  /araneum/rest/page/{id}/template
+    defaults: { _controller: ArnmPagesBundle:PageRest:updateTemplate}
+    requirements:
+        id:  \d+
+        _method:  PUT
+araneum_page_rest_widget_list:
+    pattern:  /araneum/rest/page/widgets
+    defaults: { _controller: ArnmPagesBundle:PageRest:widgetList}
+    requirements:
+        _method:  GET
+araneum_page_rest_page_widgets:
+    pattern:  /araneum/rest/page/{id}/widgets
+    defaults: { _controller: ArnmPagesBundle:PageRest:pageWidgets}
+    requirements:
+        _method:  GET
+araneum_page_rest_page_add_widget:
+    pattern:  /araneum/rest/page/{id}/addWidget
+    defaults: { _controller: ArnmPagesBundle:PageRest:addWidget}
+    requirements:
         _method:  POST
+araneum_page_rest_page_sort_widget:
+    pattern:  /araneum/rest/page/{id}/sortWidget/{widgetId}
+    defaults: { _controller: ArnmPagesBundle:PageRest:sortWidget}
+    requirements:
+        _method:  PUT
     
 #Layouts
 Araneum_layout:

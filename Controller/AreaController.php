@@ -93,7 +93,7 @@ class AreaController extends ArnmController
 
         $request = $this->getRequest();
         $form = $this->createForm(new AreaType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getEntityManager();
@@ -161,7 +161,7 @@ class AreaController extends ArnmController
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);

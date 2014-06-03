@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="page-header">
+        	<h2>{{ 'page.elements.template'|trans }}</h2>
+        </div>
+        {% form_theme form 'ArnmAraneumBundle:Form:araneum.html.twig' %}
+        <form class="form-inline" role="form">
+            {{ form_widget(form) }}
+            <button class="btn btn-primary" ng-click="update(page)">{{ 'default.form.action.update'|trans }}</button>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-md-8" ng-include="templateTmpl">
+        </div>
+        <div class="col-md-4">
+           <div class="panel panel-default widgets-container">
+              <div class="panel-heading">Widgets</div>
+              <div class="panel-body">
+                <p>
+                    List is a list of all {{ '{{' }}widgetsList.length{{ '}}' }} available widgets in the systems.
+                </p>
+                <input type="search" class="form-control" ng-model="q" placeholder="search...">
+              </div>
+              <div class="list-group source" ng-model="widgetsList" ui-sortable="sortableOptions">
+                <div class="widget" ng-repeat="widget in widgetsList | filter:q" data-widget-title="{{ '{{' }}widget.title{{ '}}' }}" data-widget-bundle="{{ '{{' }}widget.bundle{{ '}}' }}" data-widget-controller="{{ '{{' }}widget.controller{{ '}}' }}" data-widget-id="">
+                    {{ '{{' }}widget.title{{ '}}' }}                    
+                </div>
+              </div>
+           </div>
+        </div>
+    </div>
+</div>

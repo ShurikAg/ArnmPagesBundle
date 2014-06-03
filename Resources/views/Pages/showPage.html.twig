@@ -4,27 +4,10 @@
 	{{ parent() }} | {{ 'page.form.title.update'|trans }}
 {% endblock %}
 
-{% block sidebar %}
-	<div class="alert alert-info hint">
-		<span class="label label-info">{{ 'default.label.info'|trans }}</span>
-  		{{ 'page.show.info'|trans|raw }}
-	</div>
-	<ul class="nav nav-tabs nav-stacked page-components-nav ajax-menu">
-		<li>
-			<a data-toggle="ajax-control" href="{{ path('Araneum_pages_ajax_header', {'id': page.id} ) }}" rel="page-admin-content">{{ 'page.elements.head'|trans }}</a>
-		</li>
-		<li>
-			<a data-toggle="ajax-control" href="{{ path('Araneum_pages_ajax_layout', {'id': page.id} ) }}" rel="page-admin-content">
-				{{ 'page.elements.layout'|trans }}
-				<button class="btn template-button" data-toggle="ajax-control-template" href="{{ path('Araneum_pages_ajax_template', {'id': page.id} ) }}" rel="page-admin-content">{{ 'page.elements.template'|trans }}</button>
-			</a>
-		</li>
-	</ul>
-	<div id="page-status">
-		{{ render(controller("ArnmPagesBundle:Pages:statusControl", {'page': page})) }}
-	</div>
-{% endblock %}
+{% block ngapp %}ng-app="pageApp"{% endblock %}
 
-{% block content %}
-	<div id="page-admin-content"></div>
+{% block fullcontent %}
+    <input type="hidden" ng-init="pageId = {{ page.id }}; restBaseUrl = '{{ path('araneum_page_rest_get', { 'id': page.id }) }}';" />
+	<div id="page-admin-content" ng-view>
+	</div>
 {% endblock %}

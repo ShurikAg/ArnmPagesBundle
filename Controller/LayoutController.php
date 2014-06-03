@@ -72,7 +72,7 @@ class LayoutController extends Controller
         $entity = new Layout();
         $request = $this->getRequest();
         $form = $this->createForm(new LayoutType(), $entity);
-        $form->bindRequest($request);
+        $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -133,7 +133,7 @@ class LayoutController extends Controller
 
         $request = $this->getRequest();
 
-        $editForm->bindRequest($request);
+        $editForm->bind($request);
 
         if ($editForm->isValid()) {
             $em->persist($entity);
