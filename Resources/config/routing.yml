@@ -56,6 +56,11 @@ araneum_page_view_template_organizer:
     requirements:
         id:  \d+
         _method:  GET
+araneum_page_view_template_organizer_inpage_widget:
+    pattern:  /araneum/view/page/templateOrganizer/inpageWidget.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:inpageWidget}
+    requirements:
+        _method:  GET
     
 #REST handler for pages management
 araneum_page_rest_get:
@@ -102,6 +107,11 @@ araneum_page_rest_page_sort_widget:
     defaults: { _controller: ArnmPagesBundle:PageRest:sortWidget}
     requirements:
         _method:  PUT
+araneum_page_rest_page_delete_widget:
+    pattern:  /araneum/rest/page/{id}/deleteWidget/{widgetId}
+    defaults: { _controller: ArnmPagesBundle:PageRest:deleteWidget}
+    requirements:
+        _method:  DELETE
     
 #Layouts
 Araneum_layout:

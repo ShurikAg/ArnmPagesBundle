@@ -1,0 +1,9 @@
+<div class="widget" ng-repeat="widget in pageWidgets['{{ area }}']" data-widget-title="{{ '{{' }}widget.title{{ '}}' }}" data-widget-bundle="{{ '{{' }}widget.bundle{{ '}}' }}" data-widget-controller="{{ '{{' }}widget.controller{{ '}}' }}" data-widget-id="{{ '{{' }}widget.id{{ '}}' }}">
+    <div>
+        <div class="pull-right">
+            <span class="glyphicon glyphicon-cog"></span>
+            <a ng-click="removePageWidget(widget.id, '{{ area }}', $index)" class="text-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </div>
+    </div>
+    <div>{{ '{{' }}widget.title{{ '}}' }}</div>
+</div>

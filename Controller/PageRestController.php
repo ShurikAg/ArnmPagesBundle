@@ -281,6 +281,39 @@ class PageRestController extends ArnmAjaxController
     }
 
     /**
+     * Deletes wisget of a page
+     *
+     * @param int $id
+     * @param int $widgetId
+     *
+     * @return Response
+     */
+    public function deleteWidgetAction($id, $widgetId)
+    {
+        try {
+            //find the page
+            $page = $this->getPagesManager()->getPageById($id);
+            if (!($page instanceof Page)) {
+                throw $this->createNotFoundException("Page with id: '" . $id . "' not found!");
+            }
+            //find widget
+            $widgetsMgr = $this->getWidgetsManager();
+            $widget = $widgetsMgr->findWidgetById($widgetId);
+            if (!($widget instanceof Widget)) {
+                throw $this->createNotFoundException("Widget with id: '" . $widgetId . "' not found!");
+            }
+
+            $widgetsMgr->deleteWidget($widget);
+
+            return $this->createResponse(array('OK'));
+        } catch (\Exception $e) {
+            return $this->createResponse(array(
+                'error' => $e->getMessage()
+            ));
+        }
+    }
+
+    /**
      * Creates an array with minimal data from wodget object
      *
      * @param Widget $widget
