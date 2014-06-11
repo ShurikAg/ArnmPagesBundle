@@ -61,6 +61,12 @@ araneum_page_view_template_organizer_inpage_widget:
     defaults: { _controller: ArnmPagesBundle:PagesView:inpageWidget}
     requirements:
         _method:  GET
+araneum_page_view_widget_config_form:
+    pattern:  /araneum/view/page/templateOrganizer/widget/{id}/form.html
+    defaults: { _controller: ArnmPagesBundle:PagesView:widgetConfigForm}
+    requirements:
+        id:  \d+
+        _method:  GET
     
 #REST handler for pages management
 araneum_page_rest_get:

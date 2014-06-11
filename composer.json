@@ -19,7 +19,6 @@
         "symfony/symfony": "2.4.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "stof/doctrine-extensions-bundle": "dev-master",
-        "stfalcon/tinymce-bundle": "v0.2.0",
         "iibs/arnm-core": "1.0.0"
     }
 }

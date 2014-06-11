@@ -1,27 +1,25 @@
 <?php
 namespace Arnm\PagesBundle\Controller;
 
+use Arnm\CoreBundle\Controllers\ArnmAjaxController;
+use Arnm\WidgetBundle\Entity\Widget;
 use Arnm\PagesBundle\Entity\Template;
-
 use Arnm\PagesBundle\Form\PageTemplateType;
-
 use Arnm\PagesBundle\Form\PageLayoutType;
-
 use Arnm\PagesBundle\Form\PageHeaderType;
-
 use Arnm\PagesBundle\Entity\Page;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Arnm\CoreBundle\Controllers\ArnmController;
 use Arnm\PagesBundle\Form\PageType;
 use Arnm\PagesBundle\Form\NewPageType;
 use Arnm\PagesBundle\Manager\PagesManager;
+use Arnm\WidgetBundle\Manager\WidgetsManager;
 /**
  * Pages controller is responsible for pages administration flows
  *
  * @author Alex Agulyansky <alex@iibspro.com>
  */
-class PagesViewController extends ArnmController
+class PagesViewController extends ArnmAjaxController
 {
 
     /**
@@ -105,6 +103,39 @@ class PagesViewController extends ArnmController
     }
 
     /**
+     * Renders widget config form
+     *
+     * @return Response
+     */
+    public function widgetConfigFormAction($id)
+    {
+        //find widget
+        $widgetsMgr = $this->getWidgetsManager();
+        $widget = $widgetsMgr->findWidgetById($id);
+        if (!($widget instanceof Widget)) {
+            throw $this->createNotFoundException("Widget with id: '" . $id . "' not found!");
+        }
+
+        //resolve template and title
+        $editRoute = 'widget_'.$widget->getBundle().'_'.$widget->getController().'_edit';
+        $updateRoute = 'widget_'.$widget->getBundle().'_'.$widget->getController().'_update';
+        $dataRoute = 'widget_'.$widget->getBundle().'_'.$widget->getController().'_data';
+        $formTemplate = $this->get('router')->generate($editRoute);
+        $submitTarget = $this->get('router')->generate($updateRoute, array('id' => $widget->getId()));
+        $dataSource = $this->get('router')->generate($dataRoute, array('id' => $widget->getId()));
+        $formTitle = 'Configure '. $widget->getTitle();
+
+        $response = array(
+            'formTmpl' => $formTemplate,
+            'formSubmitTarget' => $submitTarget,
+            'dataSource' => $dataSource,
+            'formTitle' => $formTitle
+        );
+
+        return $this->createResponse($response);
+    }
+
+    /**
      * Gets pages manager object
      *
      * @return PagesManager
@@ -112,5 +143,15 @@ class PagesViewController extends ArnmController
     protected function getPagesManager()
     {
         return $this->get('arnm_pages.manager');
+    }
+
+    /**
+     * Gets widgets manager object
+     *
+     * @return WidgetsManager
+     */
+    protected function getWidgetsManager()
+    {
+        return $this->get('arnm_widget.manager');
     }
 }
