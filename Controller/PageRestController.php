@@ -82,6 +82,34 @@ class PageRestController extends ArnmAjaxController
     }
 
     /**
+     * Updates page data
+     *
+     * @param int $id
+     */
+    public function triggerStatusAction($id)
+    {
+        try {
+            $page = $this->getPagesManager()->getPageById($id);
+
+            if (!($page instanceof Page)) {
+                throw $this->createNotFoundException("Page with id: '" . $id . "' not found!");
+            }
+
+            $page->setStatus( ( ($page->getStatus() == Page::STATUS_DTAFT) ? Page::STATUS_PUBLISHED : Page::STATUS_DTAFT) );
+
+            $page = $this->getPagesManager()->updatePage($page);
+
+            $response = $page->toArray();
+
+            return $this->createResponse($response);
+        } catch (\Exception $e) {
+            return $this->createResponse(array(
+                'error' => $e->getMessage()
+            ));
+        }
+    }
+
+    /**
      * Handles page layout form submission
      *
      * @param int $id

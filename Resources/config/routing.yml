@@ -81,6 +81,12 @@ araneum_page_rest_header_update:
     requirements:
         id:  \d+
         _method:  PUT
+araneum_page_rest_header_update:
+    pattern:  /araneum/rest/page/{id}/status
+    defaults: { _controller: ArnmPagesBundle:PageRest:triggerStatus}
+    requirements:
+        id:  \d+
+        _method:  PUT
 araneum_page_rest_layout_update:
     pattern:  /araneum/rest/page/{id}/layout
     defaults: { _controller: ArnmPagesBundle:PageRest:updateLayout}

@@ -17,16 +17,16 @@
 	           </div>
 	        </li>
 	    </ul>
-	    <div id="page-status">
+	    <div id="page-status" ng-controller="PageStatusCtrl">
             <div class="alert alert-success hint" ng-if="page.status == 'published'">
                 <span class="label label-success">{{ 'page.status.heading'|trans }}</span>
                 <p>{{ 'page.status.published.info'|trans }}</p>
-                <p class="align-right"><button class="btn">{{ 'page.status.action.unpublish'|trans }}</button></p>
+                <p class="align-right"><button class="btn" ng-click="triggerStatus()">{{ 'page.status.action.unpublish'|trans }}</button></p>
             </div>
             <div class="alert alert-warning hint" ng-if="page.status == 'draft'">
                 <span class="label label-warning">{{ 'page.status.heading'|trans }}</span>
                 <p>{{ 'page.status.draft.info'|trans }}</p>
-                <p class="align-right"><button class="btn btn-primary" >{{ 'page.status.action.publish'|trans }}</button></p>
+                <p class="align-right"><button class="btn btn-primary" ng-click="triggerStatus()">{{ 'page.status.action.publish'|trans }}</button></p>
             </div>
 	    </div>
     </div>
