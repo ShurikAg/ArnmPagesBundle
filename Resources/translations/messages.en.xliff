@@ -90,7 +90,7 @@
                 <source>page.form.error.parent_page_not_found</source>
                 <target>Requested parent page was not found!</target>
             </trans-unit>
-            
+
             <trans-unit id="23">
                 <source>layout.list.title</source>
                 <target>Layouts List</target>

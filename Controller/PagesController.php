@@ -46,7 +46,7 @@ class PagesController extends ArnmController
             //try to find the parent page
             $parentPage = $this->getPagesManager()->getPageById($request->query->get('parent_id'));
             if (! $parentPage) {
-                $this->getSession()->setFlash('error', 'page.form.error.parent_page_not_found');
+                $this->getSession()->getFlashBag()->add('error', $this->get('translator')->trans('page.form.error.parent_page_not_found'));
 
                 return $this->redirect($this->generateUrl('ArnmPagesBundle_pages'));
             }
@@ -63,7 +63,7 @@ class PagesController extends ArnmController
                 //handle populated page object
                 $this->getPagesManager()->createNewPage($page);
 
-                $this->getSession()->setFlash('notice', 'page.form.create.success');
+                $this->getSession()->getFlashBag()->add('info', $this->get('translator')->trans('page.form.create.success'));
 
                 return $this->redirect($this->generateUrl('ArnmPagesBundle_page_show', array(
                     'id' => $page->getId()
