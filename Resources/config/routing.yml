@@ -16,19 +16,6 @@ ArnmPagesBundle_page_sort:
     pattern:  /araneum/pages/sort
     defaults: { _controller: ArnmPagesBundle:Pages:sort }
     
-ArnmPagesBundle_page_publish:
-    pattern:  /araneum/page/{id}/publish
-    defaults: { _controller: ArnmPagesBundle:Pages:updateStatus, action: publish }
-    requirements:
-        id:  \d+
-        _method:  GET
-ArnmPagesBundle_page_unpublish:
-    pattern:  /araneum/page/{id}/unpublish
-    defaults: { _controller: ArnmPagesBundle:Pages:updateStatus, action: unpublish }
-    requirements:
-        id:  \d+
-        _method:  GET
-        
 #Views controller
 araneum_page_view_manage_page:
     pattern:  /araneum/view/page/manage-page.html
@@ -81,7 +68,7 @@ araneum_page_rest_header_update:
     requirements:
         id:  \d+
         _method:  PUT
-araneum_page_rest_header_update:
+araneum_page_rest_status_update:
     pattern:  /araneum/rest/page/{id}/status
     defaults: { _controller: ArnmPagesBundle:PageRest:triggerStatus}
     requirements:
