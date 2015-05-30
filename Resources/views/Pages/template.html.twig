@@ -17,13 +17,13 @@
               <div class="panel-heading">Widgets</div>
               <div class="panel-body">
                 <p>
-                    List is a list of all {{ '{{' }}widgetsList.length{{ '}}' }} available widgets in the systems.
+                    List of all {{ '{{' }}widgetsList.length{{ '}}' }} available widgets in the systems.
                 </p>
                 <input type="search" class="form-control" ng-model="q" placeholder="search...">
               </div>
               <div class="list-group source" ng-model="widgetsList" ui-sortable="sortableOptions">
                 <div class="widget" ng-repeat="widget in widgetsList | filter:q" data-widget-title="{{ '{{' }}widget.title{{ '}}' }}" data-widget-bundle="{{ '{{' }}widget.bundle{{ '}}' }}" data-widget-controller="{{ '{{' }}widget.controller{{ '}}' }}" data-widget-id="">
-                    {{ '{{' }}widget.title{{ '}}' }}                    
+                    {{ '{{' }}widget.title{{ '}}' }}
                 </div>
               </div>
            </div>
@@ -31,21 +31,16 @@
     </div>
 </div>
 
-<div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="configModalLabel">{{ '{{' }}widgetConfigFormTitle{{ '}}' }}</h4>
-      </div>
-      <form class="form" role="form" ng-submit="configSave()">
-          <div class="modal-body" ng-include="widgetConfigFormTmpl">
-          </div>
-          <div class="modal-footer">
+<script type="text/ng-template" id="widgetConfigModal.html">
+    <form class="form" role="form" ng-submit="configSave()">
+        <div class="modal-header">
+            <h3 class="modal-title">{{ '{{' }}widgetConfigFormTitle{{ '}}' }}</h3>
+        </div>
+        <div class="modal-body" ng-include="widgetConfigFormTmpl">
+        </div>
+        <div class="modal-footer">
             <button class="btn btn-primary" type="submit">Save</button>
             <button class="btn btn-default" type="reset" ng-click="configCancel()">Cancel</button>
-          </div>
-      </form>
-    </div>
-  </div>
-</div>
+        </div>
+    </form>
+</script>

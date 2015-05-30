@@ -27,22 +27,6 @@
 	{% endif %}
 </div>
 
-<div class="modal hide" id="widget-edit-dialog">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">×</button>
-		<h3>Loading...</h3>
-	</div>
-	<form action="" method="POST" >
-		<div class="modal-body">
-			<p></p>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">Cancel</button>
-			<button class="btn btn-primary" type="submit">Save</button>
-		</div>
-	</form>
-</div>
-
 <script>
 var sortWidgetUrl = "{{ path('Araneum_pages_ajax_template_organizer_sort_widget', {'id': page.id} ) }}";
 $(document).ready(
@@ -55,7 +39,7 @@ $(document).ready(
 			$( ".column" ).sortable({
 				connectWith: ".column",
 			});
-	
-			$( ".column, .widget-list" ).disableSelection();		
+
+			$( ".column, .widget-list" ).disableSelection();
 		});
 </script>
