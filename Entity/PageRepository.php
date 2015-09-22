@@ -21,6 +21,7 @@ class PageRepository extends NestedTreeRepository
     public function fetchFullHirarchy()
     {
         $tree = $this->childrenHierarchy();
+
         return $tree;
     }
 

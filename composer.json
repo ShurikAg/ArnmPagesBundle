@@ -1,24 +1,24 @@
 {
-    "name": "iibs/arnm-pages",
-    "description": "Araneum's pages bundle",
-    "version": "1.0.3",
-    "authors": [
-        {
-            "name": "Alex Agulyansky",
-            "email": "alex@iibspro.com",
-            "homepage": "http://www.iibspro.com",
-            "role": "Dev Lead"
-        }
-    ],
-    "autoload": {
-        "psr-0": { "Arnm\\PagesBundle": "" }
-    },
-    "target-dir": "Arnm/PagesBundle",
-    "require": {
-	"php": ">=5.3.9",
-        "symfony/symfony": "2.7.*",
-        "doctrine/orm": "~2.2,>=2.2.3,<2.5",
-        "stof/doctrine-extensions-bundle": "dev-master",
-        "iibs/arnm-core": "1.0.*"
+  "name" : "iibs/arnm-pages",
+  "description" : "Araneum's pages bundle",
+  "version" : "1.0.4",
+  "require" : {
+    "php" : ">=5.3.9",
+    "symfony/symfony" : "2.7.*",
+    "doctrine/orm" : "~2.2,>=2.2.3,<2.5",
+    "stof/doctrine-extensions-bundle" : "dev-master",
+    "iibs/arnm-core" : "1.0.*"
+  },
+  "target-dir" : "Arnm/PagesBundle",
+  "authors" : [ {
+    "name" : "Alex Agulyansky",
+    "email" : "alex@iibspro.com",
+    "homepage" : "http://www.iibspro.com",
+    "role" : "Dev Lead"
+  } ],
+  "autoload" : {
+    "psr-0" : {
+      "Arnm\\PagesBundle" : ""
     }
+  }
 }

@@ -6,11 +6,18 @@
 
     <parameters>
         <parameter key="arnm_pages.manager.class">Arnm\PagesBundle\Manager\PagesManager</parameter>
+        <parameter key="arnm_pages.sitemap.data.provider.class">Arnm\PagesBundle\Service\SitemapDataProvider</parameter>
     </parameters>
 
     <services>
         <service id="arnm_pages.manager" class="%arnm_pages.manager.class%">
             <argument type="service" id="doctrine" />
         </service>
+        
+        <service id="arnm_pages.sitemap.data.provider" class="%arnm_pages.sitemap.data.provider.class%">
+	        <argument type="service" id="doctrine" />
+	        <argument type="service" id="router" />
+	        <tag name="kernel.event_listener" event="arnm.seo.sitemap.generation" method="onSitemapGeneration" />
+	    </service>
     </services>
 </container>

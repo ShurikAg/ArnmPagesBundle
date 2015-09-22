@@ -20,97 +20,88 @@ ArnmPagesBundle_page_sort:
 araneum_page_view_manage_page:
     pattern:  /araneum/view/page/manage-page.html
     defaults: { _controller: ArnmPagesBundle:PagesView:managePage}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_view_header:
     pattern:  /araneum/view/page/header.html
     defaults: { _controller: ArnmPagesBundle:PagesView:header}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_view_layout:
     pattern:  /araneum/view/page/layout.html
     defaults: { _controller: ArnmPagesBundle:PagesView:layout}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_view_template:
     pattern:  /araneum/view/page/template.html
     defaults: { _controller: ArnmPagesBundle:PagesView:template}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_view_template_organizer:
     pattern:  /araneum/view/page/templateOrganizer/{id}.html
     defaults: { _controller: ArnmPagesBundle:PagesView:templateOrganizer}
+    methods: [GET]
     requirements:
         id:  \d+
-        _method:  GET
 araneum_page_view_template_organizer_inpage_widget:
     pattern:  /araneum/view/page/templateOrganizer/inpageWidget.html
     defaults: { _controller: ArnmPagesBundle:PagesView:inpageWidget}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_view_widget_config_form:
     pattern:  /araneum/view/page/templateOrganizer/widget/{id}/form.html
     defaults: { _controller: ArnmPagesBundle:PagesView:widgetConfigForm}
+    methods: [GET]
     requirements:
         id:  \d+
-        _method:  GET
     
 #REST handler for pages management
 araneum_page_rest_get:
     pattern:  /araneum/rest/page/{id}
     defaults: { _controller: ArnmPagesBundle:PageRest:index}
+    methods: [GET]
     requirements:
         id:  \d+
-        _method:  GET
 araneum_page_rest_header_update:
     pattern:  /araneum/rest/page/{id}/header
     defaults: { _controller: ArnmPagesBundle:PageRest:updateHeader}
+    methods: [PUT]
     requirements:
         id:  \d+
-        _method:  PUT
 araneum_page_rest_status_update:
     pattern:  /araneum/rest/page/{id}/status
     defaults: { _controller: ArnmPagesBundle:PageRest:triggerStatus}
+    methods: [PUT]
     requirements:
         id:  \d+
-        _method:  PUT
 araneum_page_rest_layout_update:
     pattern:  /araneum/rest/page/{id}/layout
     defaults: { _controller: ArnmPagesBundle:PageRest:updateLayout}
+    methods: [PUT]
     requirements:
         id:  \d+
-        _method:  PUT
 araneum_page_rest_template_update:
     pattern:  /araneum/rest/page/{id}/template
     defaults: { _controller: ArnmPagesBundle:PageRest:updateTemplate}
+    methods: [PUT]
     requirements:
         id:  \d+
-        _method:  PUT
 araneum_page_rest_widget_list:
     pattern:  /araneum/rest/page/widgets
     defaults: { _controller: ArnmPagesBundle:PageRest:widgetList}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_rest_page_widgets:
     pattern:  /araneum/rest/page/{id}/widgets
     defaults: { _controller: ArnmPagesBundle:PageRest:pageWidgets}
-    requirements:
-        _method:  GET
+    methods: [GET]
 araneum_page_rest_page_add_widget:
     pattern:  /araneum/rest/page/{id}/addWidget
     defaults: { _controller: ArnmPagesBundle:PageRest:addWidget}
-    requirements:
-        _method:  POST
+    methods: [POST]
 araneum_page_rest_page_sort_widget:
     pattern:  /araneum/rest/page/{id}/sortWidget/{widgetId}
     defaults: { _controller: ArnmPagesBundle:PageRest:sortWidget}
-    requirements:
-        _method:  PUT
+    methods: [PUT]
 araneum_page_rest_page_delete_widget:
     pattern:  /araneum/rest/page/{id}/deleteWidget/{widgetId}
     defaults: { _controller: ArnmPagesBundle:PageRest:deleteWidget}
-    requirements:
-        _method:  DELETE
+    methods: [DELETE]
+        
     
 #Layouts
 Araneum_layout:
@@ -120,10 +111,9 @@ Araneum_layout:
 Araneum_layout_show:
     pattern:  /araneum/layout/{id}/show
     defaults: { _controller: "ArnmPagesBundle:Layout:show" }
+    methods: [GET]
     requirements:
         id:  \d+
-        _method:  GET
-
 Araneum_layout_new:
     pattern:  /araneum/layout/new
     defaults: { _controller: "ArnmPagesBundle:Layout:new" }
@@ -131,7 +121,7 @@ Araneum_layout_new:
 Araneum_layout_create:
     pattern:  /araneum/layout/create
     defaults: { _controller: "ArnmPagesBundle:Layout:create" }
-    requirements: { _method: post }
+    methods: [POST] 
 
 Araneum_layout_edit:
     pattern:  /araneum/layout/{id}/edit
@@ -140,12 +130,12 @@ Araneum_layout_edit:
 Araneum_layout_update:
     pattern:  /araneum/layout/{id}/update
     defaults: { _controller: "ArnmPagesBundle:Layout:update" }
-    requirements: { _method: post }
+    methods: [POST] 
 
 Araneum_layout_delete:
     pattern:  /araneum/layout/{id}/delete
     defaults: { _controller: "ArnmPagesBundle:Layout:delete" }
-    requirements: { _method: get }
+    methods: [GET]
     
 #Templates
 Araneum_template:
@@ -155,9 +145,9 @@ Araneum_template:
 Araneum_template_show:
     pattern:  /araneum/template/{id}/show
     defaults: { _controller: "ArnmPagesBundle:Template:show" }
+    methods: [GET]
     requirements:
         id:  \d+
-        _method:  GET
 
 Araneum_template_new:
     pattern:  /araneum/template/new
@@ -166,7 +156,7 @@ Araneum_template_new:
 Araneum_template_create:
     pattern:  /araneum/template/create
     defaults: { _controller: "ArnmPagesBundle:Template:create" }
-    requirements: { _method: post }
+    methods: [POST]
 
 Araneum_template_edit:
     pattern:  /araneum/template/{id}/edit
@@ -175,60 +165,60 @@ Araneum_template_edit:
 Araneum_template_update:
     pattern:  /araneum/template/{id}/update
     defaults: { _controller: "ArnmPagesBundle:Template:update" }
-    requirements: { _method: post }
+    methods: [POST]
 
 Araneum_template_delete:
     pattern:  /araneum/template/{id}/delete
     defaults: { _controller: "ArnmPagesBundle:Template:delete" }
-    requirements: { _method: get }
+    methods: [GET]
 
 #Areas
 Araneum_area:
     pattern:  /araneum/area/{templateId}
     defaults: { _controller: "ArnmPagesBundle:Area:index" }
+    methods: [GET]
     requirements:
         templateId:  \d+
-        _method:  GET
 Araneum_area_show:
     pattern:  /araneum/layout/{templateId}/{id}/show
     defaults: { _controller: "ArnmPagesBundle:Area:show" }
+    methods: [GET]
     requirements:
         templateId:  \d+
         id:  \d+
-        _method:  GET
 Araneum_area_new:
     pattern:  /araneum/area/{templateId}/new
     defaults: { _controller: "ArnmPagesBundle:Area:new" }
+    methods: [GET]
     requirements:
         templateId:  \d+
-        _method:  GET
 Araneum_area_create:
     pattern:  /araneum/area/{templateId}/create
     defaults: { _controller: "ArnmPagesBundle:Area:create" }
+    methods: [POST]
     requirements:
         templateId:  \d+
-        _method:  POST
 Araneum_area_edit:
     pattern:  /araneum/area/{templateId}/{id}/edit
     defaults: { _controller: "ArnmPagesBundle:Area:edit" }
+    methods: [GET]
     requirements:
         templateId:  \d+
         id:  \d+
-        _method:  GET
 Araneum_area_update:
     pattern:  /araneum/area/{templateId}/{id}/update
     defaults: { _controller: "ArnmPagesBundle:Area:update" }
+    methods: [POST]
     requirements:
         templateId:  \d+
         id:  \d+
-        _method:  POST
 Araneum_area_delete:
     pattern:  /araneum/area/{templateId}/{id}/delete
     defaults: { _controller: "ArnmPagesBundle:Area:delete" }
+    methods: [GET]
     requirements:
         templateId:  \d+
         id:  \d+
-        _method:  GET
 
 # site
 ArnmPagesBundle_page_root:
@@ -240,6 +230,6 @@ ArnmPagesBundle_page_first_lvl:
 ArnmPagesBundle_page_render:
     pattern:  /{path_slug}/{slug}.html
     defaults: { _controller: ArnmPagesBundle:Page:render }
+    methods: [GET]
     requirements:
         path_slug:  .*
-        _method:  GET

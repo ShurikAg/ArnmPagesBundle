@@ -140,6 +140,23 @@ class Page extends Entity implements Node
      * @ORM\OrderBy({"sequence" = "ASC"})
      */
     private $widgets;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $created;
+
+    /**
+     * @var \DateTime $updated
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updated;
+
     /**
      * Constructor
      */
@@ -477,5 +494,21 @@ class Page extends Entity implements Node
     public function getWidgets()
     {
         return $this->widgets;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }
