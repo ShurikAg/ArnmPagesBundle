@@ -5,6 +5,9 @@ namespace Arnm\PagesBundle\Entity;
 use Gedmo\Tree\Node;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Blameable\Traits\BlameableEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Arnm\CoreBundle\Entity\Entity;
 use Arnm\WidgetBundle\Entity\Widget;
@@ -15,9 +18,15 @@ use Arnm\WidgetBundle\Entity\Widget;
  * @Gedmo\Tree(type="nested")
  * @ORM\Table(name="page")
  * @ORM\Entity(repositoryClass="Arnm\PagesBundle\Entity\PageRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\Loggable
  */
 class Page extends Entity implements Node
 {
+    use SoftDeleteableEntity;
+    use TimestampableEntity;
+    use BlameableEntity;
+
     const STATUS_DTAFT = 'draft';
     const STATUS_PUBLISHED = 'published';
     /**
@@ -28,16 +37,19 @@ class Page extends Entity implements Node
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var integer $parentId
      *
      * @ORM\Column(name="parent_id", type="integer", nullable=true)
      */
     private $parentId;
+
     /**
      * @var string $title
      *
      * @ORM\Column(name="title", type="string", length=255)
+     * @Gedmo\Versioned
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -51,6 +63,7 @@ class Page extends Entity implements Node
      *
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @Gedmo\Versioned
      *
      * @Assert\Type(type="string", message="The value {{ value }} is not a valid {{ type }}.")
      * @Assert\Length(
@@ -63,12 +76,15 @@ class Page extends Entity implements Node
      * @var string $pathSlug
      *
      * @ORM\Column(name="path_slug", type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
      */
     private $pathSlug;
     /**
      * @var string $description
      *
      * @ORM\Column(name="description", type="string", length=160, nullable=true)
+     * @Gedmo\Versioned
+     *
      * @Assert\Length(
      * min=3,
      * max=160,
@@ -80,6 +96,7 @@ class Page extends Entity implements Node
      * @var string $keywords
      *
      * @ORM\Column(name="keywords", type="string", length=160, nullable=true)
+     * @Gedmo\Versioned
      *
      * @Assert\Length(
      * min=3,
@@ -91,27 +108,32 @@ class Page extends Entity implements Node
     /**
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
+     * @Gedmo\Versioned
      */
     private $lft;
     /**
      * @Gedmo\TreeLevel
      * @ORM\Column(name="lvl", type="integer")
+     * @Gedmo\Versioned
      */
     private $lvl;
     /**
      * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer")
+     * @Gedmo\Versioned
      */
     private $rgt;
     /**
      * @Gedmo\TreeRoot
      * @ORM\Column(name="root", type="integer", nullable=true)
+     * @Gedmo\Versioned
      */
     private $root;
     /**
      * @Gedmo\TreeParent
      * @ORM\ManyToOne(targetEntity="Page", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="SET NULL")
+     * @Gedmo\Versioned
      */
     private $parent;
     /**
@@ -122,16 +144,19 @@ class Page extends Entity implements Node
     /**
      * @ORM\ManyToOne(targetEntity="Layout", inversedBy="pages", fetch="EAGER")
      * @ORM\JoinColumn(name="layout_id", referencedColumnName="id", nullable=true)
+     * @Gedmo\Versioned
      */
     private $layout;
     /**
      * @ORM\ManyToOne(targetEntity="Template", inversedBy="pages", fetch="EAGER")
      * @ORM\JoinColumn(name="template_id", referencedColumnName="id", nullable=true)
+     * @Gedmo\Versioned
      */
     private $template;
 
     /**
      * @ORM\Column(name="status", type="string")
+     * @Gedmo\Versioned
      */
     private $status;
 
@@ -140,22 +165,6 @@ class Page extends Entity implements Node
      * @ORM\OrderBy({"sequence" = "ASC"})
      */
     private $widgets;
-
-    /**
-     * @var \DateTime $created
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $created;
-
-    /**
-     * @var \DateTime $updated
-     *
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $updated;
 
     /**
      * Constructor
@@ -494,21 +503,5 @@ class Page extends Entity implements Node
     public function getWidgets()
     {
         return $this->widgets;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreated()
-    {
-        return $this->created;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getUpdated()
-    {
-        return $this->updated;
     }
 }

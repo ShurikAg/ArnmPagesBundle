@@ -4,6 +4,19 @@
 	{{ parent() }} | {{ 'page.form.title.update'|trans }}
 {% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+	{% javascripts
+	    '@ArnmPagesBundle/Resources/public/js/app.js'
+	    '@ArnmPagesBundle/Resources/public/js/controllers.js'
+	    '@ArnmAraneumBundle/Resources/public/js/form/app.js'
+	    '@ArnmAraneumBundle/Resources/public/js/form/controllers.js'
+	    '@ArnmAraneumBundle/Resources/public/js/tinymce.js'
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
 {% block ngapp %}ng-app="pageApp"{% endblock %}
 
 {% block fullcontent %}

@@ -1,20 +1,28 @@
 <?php
-
 namespace Arnm\PagesBundle\Entity;
 
 use Arnm\CoreBundle\Entity\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Arnm\PagesBundle\Entity\Page;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Gedmo\Blameable\Traits\BlameableEntity;
 /**
  * Arnm\PagesBundle\Entity\Layout
  *
  * @ORM\Table(name="layout")
  * @ORM\Entity(repositoryClass="Arnm\PagesBundle\Entity\LayoutRepository")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
+ * @Gedmo\Loggable
  */
 class Layout extends Entity
 {
+    use SoftDeleteableEntity;
+    use TimestampableEntity;
+    use BlameableEntity;
+
     /**
      * @var integer $id
      *
@@ -28,10 +36,12 @@ class Layout extends Entity
      * @var string $layout
      *
      * @ORM\Column(name="layout", type="string", length=255)
+     * @Gedmo\Versioned
      *
      * @Assert\NotBlank()
      */
     private $layout;
+
     /**
      * @ORM\OneToMany(targetEntity="Page", mappedBy="layout")
      */

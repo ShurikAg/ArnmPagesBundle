@@ -21,7 +21,8 @@ class PageLayoutType extends AbstractType
                 'data-toggle' => 'popover',
                 'content' => 'page.form.layout.help',
                 'class' => 'form-control',
-                'ng-model' => 'page.layout.id'
+                'ng-model' => 'selectedLayout',
+                'ng-init' => "selectedLayout=''"
             ),
             'required' => false
         ));

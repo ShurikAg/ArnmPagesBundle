@@ -58,7 +58,7 @@ class SitemapDataProvider
                 continue;
             }
 
-            $urlSet->createAndAddUrl($loc, ((is_null($page->getUpdated())) ? new \DateTime('now') : $page->getUpdated()), ChangeFreq::CF_MONTHLY, 0.3);
+            $urlSet->createAndAddUrl($loc, ((is_null($page->getUpdatedAt())) ? new \DateTime('now') : $page->getUpdatedAt()), ChangeFreq::CF_MONTHLY, 0.3);
         }
     }
 

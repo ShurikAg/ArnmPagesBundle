@@ -3,11 +3,11 @@
     	<h2>{{ 'page.elements.layout'|trans }}</h2>
     </div>
     {% form_theme form 'ArnmAraneumBundle:Form:araneum.html.twig' %}
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" ng-cloak>
         {{ form_widget(form) }}
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-primary" ng-click="update(page)">{{ 'default.form.action.update'|trans }}</button>
+                <button class="btn btn-primary" ng-click="update()">{{ 'default.form.action.update'|trans }}</button>
                 <button class="btn btn-default" ng-click="reset()">{{ 'default.form.action.reset'|trans }}</button>
             </div>
         </div>
