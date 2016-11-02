@@ -31,3 +31,5 @@ build/artifacts
 vendor
 
 /cache.properties
+.idea
+ArnmPagesBundle.iml

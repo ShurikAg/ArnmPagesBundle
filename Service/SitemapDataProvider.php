@@ -58,7 +58,15 @@ class SitemapDataProvider
                 continue;
             }
 
-            $urlSet->createAndAddUrl($loc, ((is_null($page->getUpdatedAt())) ? new \DateTime('now') : $page->getUpdatedAt()), ChangeFreq::CF_MONTHLY, 0.3);
+            $now = new \DateTime('now');
+            $monthAgo = $now->modify("-1 month");
+            //school details
+            $pageModDate = (is_null($page->getUpdatedAt())) ? new \DateTime('now') : $page->getUpdatedAt();
+            if ($pageModDate < $monthAgo) {
+                $pageModDate = $now;
+            }
+
+            $urlSet->createAndAddUrl($loc, $pageModDate, ChangeFreq::CF_MONTHLY, 0.3);
         }
     }
 

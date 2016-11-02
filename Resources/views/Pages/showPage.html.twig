@@ -17,8 +17,6 @@
 	{% endjavascripts %}
 {% endblock %}
 
-{% block ngapp %}ng-app="pageApp"{% endblock %}
-
 {% block fullcontent %}
     <input type="hidden" ng-init="pageId = {{ page.id }}; restBaseUrl = '{{ path('araneum_page_rest_get', { 'id': page.id }) }}';" />
 	<div id="page-admin-content" ng-view>
